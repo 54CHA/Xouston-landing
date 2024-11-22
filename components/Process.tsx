@@ -7,50 +7,50 @@ import { useRef, useState } from 'react';
 const steps = [
   {
     icon: Search,
-    title: "Discovery",
-    description: "We analyze your needs and create a comprehensive project plan.",
+    title: "Исследование",
+    description: "Анализируем ваши потребности и создаем комплексный план проекта.",
     gradient: "from-violet-500 to-indigo-500",
     features: [
-      "Requirements Analysis",
-      "Market Research",
-      "Project Scoping",
-      "Timeline Planning"
+      "Анализ требований",
+      "Исследование рынка",
+      "Определение масштаба",
+      "Планирование сроков"
     ]
   },
   {
     icon: Code,
-    title: "Development",
-    description: "Our team builds your solution using cutting-edge technologies.",
+    title: "Разработка",
+    description: "Наша команда создает решение, используя передовые технологии.",
     gradient: "from-cyan-500 to-blue-500",
     features: [
-      "Agile Development",
-      "Clean Architecture",
-      "Code Reviews",
-      "Daily Updates"
+      "Гибкая разработка",
+      "Чистая архитектура",
+      "Код-ревью",
+      "Ежедневные обновления"
     ]
   },
   {
     icon: TestTube,
-    title: "Testing",
-    description: "Rigorous testing ensures a flawless end product.",
+    title: "Тестирование",
+    description: "Тщательное тестирование обеспечивает безупречный конечный продукт.",
     gradient: "from-emerald-500 to-green-500",
     features: [
-      "Unit Testing",
-      "Integration Testing",
-      "Performance Testing",
-      "User Acceptance"
+      "Модульное тестирование",
+      "Интеграционное тестирование",
+      "Тестирование производительности",
+      "Приемочное тестирование"
     ]
   },
   {
     icon: Rocket,
-    title: "Launch",
-    description: "We deploy your project and provide ongoing support.",
+    title: "Запуск",
+    description: "Разворачиваем ваш проект и обеспечиваем постоянную поддержку.",
     gradient: "from-orange-500 to-red-500",
     features: [
-      "Deployment Strategy",
-      "Performance Monitoring",
-      "24/7 Support",
-      "Regular Updates"
+      "Стратегия развертывания",
+      "Мониторинг производительности",
+      "Поддержка 24/7",
+      "Регулярные обновления"
     ]
   }
 ];
@@ -83,7 +83,7 @@ export default function Process() {
             transition={{ duration: 0.6 }}
             className="inline-flex items-center px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm mb-6"
           >
-            <span className="text-sm text-white/80">How We Work</span>
+            <span className="text-sm text-white/80">Как мы работаем</span>
           </motion.div>
           <motion.h2
             initial={{ opacity: 0 }}
@@ -92,8 +92,8 @@ export default function Process() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-4xl md:text-5xl font-bold text-white mb-6"
           >
-            Our Development
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-violet-400 to-emerald-400"> Process</span>
+            Наш процесс
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-violet-400 to-emerald-400"> разработки</span>
           </motion.h2>
         </motion.div>
 

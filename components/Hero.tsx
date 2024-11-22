@@ -29,24 +29,19 @@ export default function Hero() {
                 transition={{ delay: 0.2, duration: 0.5 }}
                 className="flex items-center space-x-2 mb-6"
               >
-                <div className="relative flex items-center px-4 py-2 rounded-2xl bg-white/5 backdrop-blur-lg border border-white/10">
-                  <div className="flex items-center justify-center w-8 h-8 rounded-xl bg-gradient-to-br from-indigo-500/10 to-emerald-500/10 border border-white/10">
-                    <Sparkles className="h-4 w-4 text-white" />
-                  </div>
-                  <span className="ml-3 text-sm text-indigo-200">Next Generation Development</span>
-                </div>
+                
               </motion.div>
 
               <h2 className="text-5xl md:text-6xl font-bold mb-6">
                 <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 to-emerald-500">
-                  Building Digital
+                  Создаем цифровое
                 </span>
                 <br />
-                <span className="text-white">Excellence</span>
+                <span className="text-white">превосходство</span>
               </h2>
 
               <p className="text-xl text-indigo-200 mb-8">
-                We craft exceptional web and mobile experiences that drive innovation and growth for forward-thinking businesses.
+                Мы создаем исключительные веб и мобильные решения, которые способствуют инновациям и росту прогрессивного бизнеса.
               </p>
 
               <motion.button
@@ -56,7 +51,7 @@ export default function Hero() {
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-emerald-500 rounded-xl blur-xl opacity-50 group-hover:opacity-75 transition-opacity" />
                 <div className="relative flex items-center justify-center px-6 py-4 rounded-xl bg-gradient-to-r from-indigo-500 to-emerald-500 text-white font-medium">
-                  <span>Start Your Project</span>
+                  <span>Начать проект</span>
                   <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                 </div>
               </motion.button>
@@ -67,7 +62,7 @@ export default function Hero() {
                 className="w-full sm:w-auto relative"
               >
                 <div className="relative flex items-center justify-center px-6 py-4 rounded-xl bg-white/5 backdrop-blur-lg border border-white/10 text-white font-medium hover:bg-white/10 transition-colors">
-                  <span>Explore Services</span>
+                  <span>Изучить услуги</span>
                   <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                 </div>
               </motion.button>
@@ -83,20 +78,20 @@ export default function Hero() {
               {[
                 {
                   icon: Code2,
-                  title: "Web Development",
-                  description: "Modern, responsive websites built with cutting-edge technology",
+                  title: "Веб-разработка",
+                  description: "Современные, адаптивные веб-сайты, созданные с использованием передовых технологий",
                   gradient: "from-indigo-500 to-blue-500"
                 },
                 {
                   icon: Smartphone,
-                  title: "Mobile Development",
-                  description: "Native and cross-platform mobile applications",
+                  title: "Мобильная разработка",
+                  description: "Нативные и кроссплатформенные мобильные приложения",
                   gradient: "from-emerald-500 to-cyan-500"
                 },
                 {
                   icon: Globe,
-                  title: "Global Reach",
-                  description: "Scalable solutions for worldwide deployment",
+                  title: "Глобальный охват",
+                  description: "Масштабируемые решения для международного развертывания",
                   gradient: "from-blue-500 to-violet-500"
                 }
               ].map((item, index) => (

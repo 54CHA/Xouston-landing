@@ -6,29 +6,29 @@ import Link from 'next/link';
 
 const footerLinks = [
   {
-    title: "Company",
+    title: "Компания",
     links: [
-      { name: "About", href: "#about" },
-      { name: "Services", href: "#services" },
-      { name: "Process", href: "#process" },
-      { name: "Contact", href: "#contact" }
+      { name: "О нас", href: "#about" },
+      { name: "Услуги", href: "#services" },
+      { name: "Процесс", href: "#process" },
+      { name: "Контакты", href: "#contact" }
     ]
   },
   {
-    title: "Solutions",
+    title: "Решения",
     links: [
-      { name: "Web Development", href: "#web-dev" },
-      { name: "Mobile Apps", href: "#mobile" },
-      { name: "Cloud Services", href: "#cloud" },
-      { name: "API Integration", href: "#api" }
+      { name: "Веб-разработка", href: "#web-dev" },
+      { name: "Мобильные приложения", href: "#mobile" },
+      { name: "Облачные сервисы", href: "#cloud" },
+      { name: "Интеграция API", href: "#api" }
     ]
   },
   {
-    title: "Resources",
+    title: "Ресурсы",
     links: [
-      { name: "Documentation", href: "#docs" },
-      { name: "Blog", href: "#blog" },
-      { name: "Case Studies", href: "#cases" },
+      { name: "Документация", href: "#docs" },
+      { name: "Блог", href: "#blog" },
+      { name: "Кейсы", href: "#cases" },
       { name: "FAQ", href: "#faq" }
     ]
   }
@@ -67,7 +67,7 @@ export default function Footer() {
               </div>
             </Link>
             <p className="text-gray-400 max-w-sm">
-              Crafting exceptional digital experiences through innovative web and mobile solutions.
+              Создаем исключительный цифровой опыт через инновационные веб и мобильные решения.
             </p>
             <div className="flex space-x-4">
               {socialLinks.map((social) => (
@@ -113,13 +113,13 @@ export default function Footer() {
           </p>
           <div className="flex space-x-6 mt-4 sm:mt-0">
             <Link href="#privacy" className="text-sm text-gray-400 hover:text-white transition-colors">
-              Privacy Policy
+              Политика конфиденциальности
             </Link>
             <Link href="#terms" className="text-sm text-gray-400 hover:text-white transition-colors">
-              Terms of Service
+              Условия использования
             </Link>
             <Link href="#cookies" className="text-sm text-gray-400 hover:text-white transition-colors">
-              Cookie Policy
+              Политика использования файлов cookie
             </Link>
           </div>
         </div>

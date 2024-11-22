@@ -5,17 +5,17 @@ import { Menu, X, ChevronDown, ExternalLink, Sparkles, ArrowRight } from 'lucide
 import { useState, useEffect } from 'react';
 
 const navigation = [
-  { name: 'Services', href: '#services' },
-  { name: 'Process', href: '#process' },
+  { name: 'Услуги', href: '#services' },
+  { name: 'Процесс', href: '#process' },
   { 
-    name: 'Solutions', 
+    name: 'Решения', 
     children: [
-      { name: 'Web Development', href: '#web-dev', description: 'Modern web applications built with Next.js' },
-      { name: 'Mobile Apps', href: '#mobile', description: 'Native iOS and Android development' },
-      { name: 'Cloud Services', href: '#cloud', description: 'Scalable cloud infrastructure' },
+      { name: 'Веб-разработка', href: '#web-dev', description: 'Современные веб-приложения на Next.js' },
+      { name: 'Мобильные приложения', href: '#mobile', description: 'Разработка для iOS и Android' },
+      { name: 'Облачные сервисы', href: '#cloud', description: 'Масштабируемая облачная инфраструктура' },
     ]
   },
-  { name: 'Contact', href: '#contact' },
+  { name: 'Контакты', href: '#contact' },
 ];
 
 export default function Navbar() {
@@ -35,28 +35,51 @@ export default function Navbar() {
     <motion.header
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className="fixed top-0 left-0 right-0 z-50"
+      className="fixed top-10 left-0 right-0 z-50 px-4 sm:px-6 lg:px-8"
     >
-      <nav className={`relative transition-all duration-300 ${scrolled ? 'py-2' : 'py-4'}`}>
+      <nav className={`mx-auto transition-all duration-300 relative
+        ${scrolled ? 'max-w-5xl py-2' : 'max-w-7xl py-4'}`}
+      >
         {/* Enhanced Glassmorphic Background with Gradient Border */}
-        <div className="absolute inset-0 bg-black/40 backdrop-blur-xl" />
-        <div className={`absolute inset-x-0 bottom-0 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent transition-opacity duration-300 ${scrolled ? 'opacity-100' : 'opacity-0'}`} />
+        <div className="absolute inset-0 bg-black/40 backdrop-blur-xl rounded-full" />
+        <div className={`absolute inset-x-0 -bottom-px h-[1px] bg-gradient-to-r 
+          from-transparent via-white/20 to-transparent transition-opacity duration-300 
+          ${scrolled ? 'opacity-100' : 'opacity-0'}`} 
+        />
         
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="relative mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
-            {/* Enhanced Logo */}
+            {/* Modern Logo */}
             <motion.a
               href="#"
-              className="flex items-center space-x-2 group"
+              className="flex items-center space-x-3 group"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-              <div className="h-10 w-10 rounded-xl bg-gradient-to-r from-indigo-500 to-emerald-500 p-[1px]">
-                <div className="flex h-full w-full items-center justify-center rounded-xl bg-black">
-                  <span className="text-xl font-bold text-white">X</span>
+              <div className="relative">
+                {/* Animated glow effect */}
+                <div className="absolute -inset-2 bg-gradient-to-r from-indigo-500 via-purple-500 to-emerald-500 rounded-full blur-xl opacity-20 group-hover:opacity-75 transition duration-500 group-hover:duration-200 animate-tilt" />
+                
+                {/* Logo symbol */}
+                <div className="relative flex items-center justify-center h-10 w-10 rounded-xl bg-black border border-white/10 overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/20 to-emerald-500/20" />
+                  <div className="relative flex items-center justify-center w-full h-full bg-black/50 backdrop-blur-sm">
+                    <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-purple-400 to-emerald-400">
+                      X
+                    </span>
+                  </div>
                 </div>
               </div>
-              <span className="text-xl font-bold text-white">ouston</span>
+              
+              {/* Logo text */}
+              <div className="flex flex-col">
+                <span className="text-lg font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-purple-400 to-emerald-400">
+                  Xouston
+                </span>
+                <span className="text-xs text-white/50 tracking-widest uppercase">
+                  Design Lab
+                </span>
+              </div>
             </motion.a>
 
             {/* Enhanced Desktop Navigation */}
@@ -120,13 +143,13 @@ export default function Navbar() {
                 <div className="absolute -inset-0.5 bg-gradient-to-r from-indigo-500 to-emerald-500 rounded-xl opacity-0 group-hover:opacity-50 blur-xl transition-all duration-500" />
 
                 {/* Button container */}
-                <div className="relative flex items-center px-5 py-2.5 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm">
+                <div className="relative flex items-center px-5 py-2.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm">
                   {/* Gradient overlay */}
-                  <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-indigo-500/20 to-emerald-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="absolute inset-0 rounded-full bg-gradient-to-r from-indigo-500/80 to-emerald-500/80 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   
                   {/* Button content */}
                   <div className="relative flex items-center space-x-2">
-                    <span className="text-sm font-medium text-white">Get Started</span>
+                    <span className="text-sm font-medium text-white">Связаться</span>
                     <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-0.5 transition-transform duration-500" />
                   </div>
                 </div>
@@ -149,7 +172,7 @@ export default function Navbar() {
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="absolute inset-x-0 top-full bg-black/50 backdrop-blur-xl md:hidden"
+            className="absolute inset-x-0 top-full mt-2 bg-black/50 backdrop-blur-xl md:hidden rounded-xl"
           >
             <div className="space-y-1 px-4 py-4">
               {navigation.map((item) => (
@@ -191,3 +214,15 @@ export default function Navbar() {
     </motion.header>
   );
 }
+
+{/* Add this to your CSS */}
+<style jsx global>{`
+  @keyframes tilt {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(1deg); }
+    75% { transform: rotate(-1deg); }
+  }
+  .animate-tilt {
+    animation: tilt 10s infinite linear;
+  }
+`}</style>

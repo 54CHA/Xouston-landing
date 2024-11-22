@@ -36,18 +36,18 @@ export default function Contact() {
             <div className="sticky top-24">
               <h2 className="text-4xl font-bold mb-6">
                 <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 to-emerald-500">
-                  Let's Build Something
+                  Давайте создадим что-то
                 </span>
                 <br />
-                <span className="text-white">Extraordinary</span>
+                <span className="text-white">Необычное</span>
               </h2>
               
               <div className="space-y-6">
                 {[
-                  { icon: Phone, label: "Call Us", value: "+1 (555) 123-4567" },
-                  { icon: Mail, label: "Email Us", value: "contact@xouston.com" },
-                  { icon: MapPin, label: "Visit Us", value: "123 Innovation Drive" },
-                  { icon: Globe, label: "Working Hours", value: "24/7 Support Available" }
+                  { icon: Phone, label: "Позвоните нам", value: "+7 (555) 123-4567" },
+                  { icon: Mail, label: "Напишите нам", value: "contact@xouston.com" },
+                  { icon: MapPin, label: "Посетите нас", value: "ул. Инновационная, 123" },
+                  { icon: Globe, label: "Режим работы", value: "Поддержка 24/7" }
                 ].map((item, index) => (
                   <motion.div
                     key={index}
@@ -86,8 +86,8 @@ export default function Contact() {
               <div className="relative bg-white/10 backdrop-blur-xl rounded-3xl border border-white/10 p-8">
                 <form onSubmit={handleSubmit} className="space-y-6">
                   {[
-                    { label: "Your Name", type: "text", key: "name" },
-                    { label: "Email Address", type: "email", key: "email" }
+                    { label: "Ваше имя", type: "text", key: "name" },
+                    { label: "Электронная почта", type: "email", key: "email" }
                   ].map((field) => (
                     <div key={field.key}>
                       <label className="block text-sm font-medium text-indigo-200 mb-2">
@@ -105,14 +105,14 @@ export default function Contact() {
                   
                   <div>
                     <label className="block text-sm font-medium text-indigo-200 mb-2">
-                      Your Message
+                      Ваше сообщение
                     </label>
                     <textarea
                       rows={4}
                       value={formState.message}
                       onChange={(e) => setFormState(prev => ({ ...prev, message: e.target.value }))}
                       className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/50 focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200"
-                      placeholder="Tell us about your project..."
+                      placeholder="Расскажите о вашем проекте..."
                     />
                   </div>
 
@@ -124,7 +124,7 @@ export default function Contact() {
                   >
                     <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-emerald-500 rounded-xl blur-xl opacity-50 group-hover:opacity-75 transition-opacity" />
                     <div className="relative flex items-center justify-center px-6 py-4 rounded-xl bg-gradient-to-r from-indigo-500 to-emerald-500 text-white font-medium">
-                      <span>Send Message</span>
+                      <span>Отправить сообщение</span>
                       <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                     </div>
                   </motion.button>

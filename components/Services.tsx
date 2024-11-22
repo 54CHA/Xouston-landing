@@ -7,43 +7,43 @@ import { useRef } from 'react';
 const services = [
   {
     icon: Code2,
-    title: "Web Development",
-    description: "Custom web applications built with modern frameworks and best practices.",
+    title: "Веб-разработка",
+    description: "Современные веб-приложения, созданные с использованием передовых технологий.",
     gradient: "from-indigo-500 to-violet-500",
     delay: 0.2
   },
   {
     icon: Smartphone,
-    title: "Mobile Development",
-    description: "Native iOS and Android apps that deliver exceptional user experiences.",
+    title: "Мобильная разработка",
+    description: "Нативные iOS и Android приложения с исключительным пользовательским опытом.",
     gradient: "from-cyan-500 to-blue-500",
     delay: 0.3
   },
   {
     icon: Globe,
-    title: "Progressive Web Apps",
-    description: "Fast, reliable, and engaging web apps that work offline.",
+    title: "Прогрессивные веб-приложения",
+    description: "Быстрые и надежные веб-приложения с поддержкой офлайн режима.",
     gradient: "from-emerald-500 to-green-500",
     delay: 0.4
   },
   {
     icon: Database,
-    title: "Backend Development",
-    description: "Scalable server solutions and robust API architectures.",
+    title: "Серверная разработка",
+    description: "Масштабируемые серверные решения и надежные API архитектуры.",
     gradient: "from-orange-500 to-red-500",
     delay: 0.5
   },
   {
     icon: Lock,
-    title: "Security Solutions",
-    description: "Implementation of best security practices and data protection.",
+    title: "Решения безопасности",
+    description: "Внедрение лучших практик безопасности и защиты данных.",
     gradient: "from-pink-500 to-rose-500",
     delay: 0.6
   },
   {
     icon: Rocket,
-    title: "Performance Optimization",
-    description: "Speed optimization and performance enhancement services.",
+    title: "Оптимизация производительности",
+    description: "Услуги по оптимизации скорости и повышению производительности.",
     gradient: "from-amber-500 to-yellow-500",
     delay: 0.7
   }
@@ -59,7 +59,7 @@ export default function Services() {
   const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
 
   return (
-    <section id="services" className="relative py-32 overflow-hidden bg-black">
+    <section id="services" className="relative py-32 overflow-hidden bg-black -mt-10">
       {/* Unique Services Background */}
       <div className="absolute inset-0 bg-gradient-to-bl from-emerald-900/20 via-transparent to-cyan-900/20" />
       <div className="absolute inset-0 bg-grid-white/[0.02] rotate-3 scale-110" />
@@ -80,7 +80,7 @@ export default function Services() {
             <span className="relative inline-block">
               <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-emerald-500 blur-lg opacity-25" />
               <span className="relative px-6 py-2 text-sm text-white/90 bg-white/5 rounded-full border border-white/10 backdrop-blur-sm">
-                Our Services
+                Наши услуги
               </span>
             </span>
           </motion.div>
@@ -92,10 +92,10 @@ export default function Services() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-4xl md:text-5xl font-bold mb-6"
           >
-            <span className="text-white">Transform Your Ideas Into</span>
+            <span className="text-white">Преобразуем ваши идеи в</span>
             <br />
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-cyan-400 to-emerald-400">
-              Digital Reality
+              Цифровой реальность
             </span>
           </motion.h2>
         </motion.div>
@@ -148,7 +148,7 @@ export default function Services() {
                       whileHover={{ x: 4 }}
                       className="flex items-center text-white/60 hover:text-white transition-colors duration-300"
                     >
-                      <span className="text-sm font-medium">Learn more</span>
+                      <span className="text-sm font-medium">Узнать больше</span>
                  
                     </motion.div>
                     {/* Animated Underline */}
