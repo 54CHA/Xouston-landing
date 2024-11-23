@@ -1,81 +1,92 @@
 "use client";
 
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { Search, Code, TestTube, Rocket, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { motion, useScroll, useTransform, MotionValue } from 'framer-motion';
+import { FileSignature, Paintbrush, Code2, FileText, CheckCircle2, Settings, ArrowRight } from 'lucide-react';
 import { useRef, useState } from 'react';
 
 const steps = [
   {
-    icon: Search,
-    title: "Исследование",
-    description: "Анализируем ваши потребности и создаем комплексный план проекта.",
+    icon: FileSignature,
+    title: "Подпись договора",
+    description: "Обсуждаем все детали проекта и заключаем договор с четкими условиями.",
     gradient: "from-violet-500 to-indigo-500",
     features: [
-      "Анализ требований",
-      "Исследование рынка",
-      "Определение масштаба",
-      "Планирование сроков"
+      "Согласование условий",
+      "Определение сроков",
+      "Фиксация стоимости",
+      "Подписание документов"
     ]
   },
   {
-    icon: Code,
-    title: "Разработка",
-    description: "Наша команда создает решение, используя передовые технологии.",
+    icon: Paintbrush,
+    title: "Разработка и утверждение дизайна",
+    description: "Создаем уникальный дизайн, учитывая ваши пожелания и современные тенденции.",
     gradient: "from-cyan-500 to-blue-500",
     features: [
-      "Гибкая разработка",
-      "Чистая архитектура",
-      "Код-ревью",
-      "Ежедневные обновления"
+      "Прототипирование",
+      "UI/UX дизайн",
+      "Адаптивная верстка",
+      "Согласование макетов"
     ]
   },
   {
-    icon: TestTube,
-    title: "Тестирование",
-    description: "Тщательное тестирование обеспечивает безупречный конечный продукт.",
+    icon: Code2,
+    title: "Разработка продукта",
+    description: "Воплощаем дизайн в полноценный рабочий продукт с использованием современных технологий.",
     gradient: "from-emerald-500 to-green-500",
     features: [
-      "Модульное тестирование",
-      "Интеграционное тестирование",
-      "Тестирование производительности",
-      "Приемочное тестирование"
+      "Frontend разработка",
+      "Backend разработка",
+      "Интеграция API",
+      "Оптимизация кода"
     ]
   },
   {
-    icon: Rocket,
-    title: "Запуск",
-    description: "Разворачиваем ваш проект и обеспечиваем постоянную поддержку.",
-    gradient: "from-orange-500 to-red-500",
+    icon: FileText,
+    title: "Заполнение контентом",
+    description: "Наполняем сайт качественным контентом и необходимой информацией.",
+    gradient: "from-amber-500 to-orange-500",
     features: [
-      "Стратегия развертывания",
-      "Мониторинг производительности",
-      "Поддержка 24/7",
-      "Регулярные обновления"
+      "Создание текстов",
+      "Оптимизация изображений",
+      "Структурирование данных",
+      "Проверка контента"
     ]
-  }
+  },
+  {
+    icon: CheckCircle2,
+    title: "Сдача",
+    description: "Проводим финальное тестирование и передаем готовый проект.",
+    gradient: "from-rose-500 to-red-500",
+    features: [
+      "Тестирование",
+      "Исправление багов",
+      "Документация",
+      "Передача проекта"
+    ]
+  },
+  // {
+  //   icon: Settings,
+  //   title: "Доп услуги",
+  //   description: "Предоставляем дополнительные услуги для развития вашего проекта.",
+  //   gradient: "from-purple-500 to-pink-500",
+  //   features: [
+  //     "SEO оптимизация",
+  //     "Техническая поддержка",
+  //     "Аналитика",
+  //     "Маркетинговое продвижение"
+  //   ]
+  // }
 ];
 
 export default function Process() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeStep, setActiveStep] = useState<number | null>(null);
   
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"]
-  });
-
-  const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
-
   return (
-    <section id="process" className="relative py-32 bg-black overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-tr from-violet-900/20 via-transparent to-blue-900/20" />
-      <div className="absolute inset-0 bg-grid-white/[0.02]" />
-      <div className="absolute h-[500px] w-[500px] -top-32 right-0 rounded-full bg-violet-500/20 blur-[100px] animate-blob" />
-      <div className="absolute h-[500px] w-[500px] -bottom-32 -left-32 rounded-full bg-blue-500/20 blur-[100px] animate-blob animation-delay-2000" />
-      <div className="absolute h-[500px] w-[500px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-indigo-500/20 blur-[100px] animate-blob animation-delay-4000" />
-
-      <div ref={containerRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        <motion.div style={{ y }} className="text-center mb-20">
+    <section ref={containerRef} className="relative py-32">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div className="text-center mb-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -97,58 +108,136 @@ export default function Process() {
           </motion.h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-          {steps.map((step, index) => (
-            <motion.div
-              key={step.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              onHoverStart={() => setActiveStep(index)}
-              onHoverEnd={() => setActiveStep(null)}
-              className="relative group"
-            >
-              <div className={`absolute inset-0 bg-gradient-to-r ${step.gradient} opacity-0 group-hover:opacity-20 transition-opacity duration-300 rounded-2xl blur-xl`} />
-              <div className="relative bg-white/5 backdrop-blur-lg border border-white/10 p-8 rounded-2xl hover:bg-white/10 transition-all duration-300">
-                <div className={`inline-flex p-3 rounded-xl bg-gradient-to-r ${step.gradient} bg-opacity-10 mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                  <step.icon className="h-6 w-6 text-white" />
-                </div>
-                <h3 className="text-xl font-semibold text-white mb-4">
-                  {index + 1}. {step.title}
-                </h3>
-                <p className="text-gray-400 mb-6">{step.description}</p>
-                
-                <div className={`space-y-3 transition-all duration-300 ${activeStep === index ? 'opacity-100 max-h-48' : 'opacity-0 max-h-0'}`} 
-                     style={{
-                       position: 'relative',
-                       top: 0,
-                       overflow: 'hidden',
-                     }}>
-                  {step.features.map((feature, featureIndex) => (
-                    <div key={featureIndex} className="flex items-center space-x-2">
-                      <CheckCircle2 className="h-4 w-4 text-white/60" />
-                      <span className="text-sm text-white/60">{feature}</span>
+        <div className="relative h-[400vh]">
+          {steps.map((step, index) => {
+            const { scrollYProgress } = useScroll({
+              target: containerRef,
+              offset: [`${index * 0.15} start`, `${index * 0.15 + 0.1} start`]
+            });
+
+            const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [0, 1, 1]);
+            const y = useTransform(scrollYProgress, [0, 1], [100, 0]);
+
+            // Track progress for next four cards
+            const nextCardProgress = useScroll({
+              target: containerRef,
+              offset: [`${(index + 1) * 0.15} start`, `${(index + 1) * 0.15 + 0.1} start`]
+            });
+
+            const nextNextCardProgress = useScroll({
+              target: containerRef,
+              offset: [`${(index + 2) * 0.15} start`, `${(index + 2) * 0.15 + 0.1} start`]
+            });
+
+            const thirdNextCardProgress = useScroll({
+              target: containerRef,
+              offset: [`${(index + 3) * 0.15} start`, `${(index + 3) * 0.15 + 0.1} start`]
+            });
+
+            const fourthNextCardProgress = useScroll({
+              target: containerRef,
+              offset: [`${(index + 4) * 0.15} start`, `${(index + 4) * 0.15 + 0.1} start`]
+            });
+
+            // Four levels of scaling with more dramatic reductions
+            const initialScale = useTransform(
+              nextCardProgress.scrollYProgress,
+              [0, 0.5, 1],
+              [1, 1, 0.95]
+            );
+
+            const secondaryScale = useTransform(
+              nextNextCardProgress.scrollYProgress,
+              [0, 0.5, 1],
+              [1, 1, 0.90]
+            );
+
+            const tertiaryScale = useTransform(
+              thirdNextCardProgress.scrollYProgress,
+              [0, 0.5, 1],
+              [1, 1, 0.85]
+            );
+
+            const quaternaryScale = useTransform(
+              fourthNextCardProgress.scrollYProgress,
+              [0, 0.5, 1],
+              [1, 1, 0.80]
+            );
+
+            // Combine all scales
+            const scale = useTransform(
+              [initialScale, secondaryScale, tertiaryScale, quaternaryScale] as const,
+              ([scale1, scale2, scale3, scale4]: number[]) => Math.min(scale1, scale2, scale3, scale4)
+            );
+
+            return (
+              <motion.div
+                key={step.title}
+                style={{
+                  position: 'sticky',
+                  top: `${24 + index * 6}vh`,
+                  zIndex: index,
+                  opacity,
+                  y,
+                  scale,
+                  transformOrigin: "center top",
+                }}
+                className="group"
+              >
+                <div className="relative bg-black/40 backdrop-blur-xl border border-white/10 p-8 rounded-2xl hover:bg-black/50 transition-all duration-300">
+                  {/* Gradient Overlay */}
+                  <div className={`absolute inset-0 bg-gradient-to-r ${step.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-300 rounded-2xl`} />
+                  
+                  {/* Icon and Number */}
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className={`p-3 rounded-xl bg-gradient-to-r ${step.gradient} bg-opacity-10`}>
+                      <step.icon className="h-6 w-6 text-white" />
                     </div>
-                  ))}
-                </div>
+                    <span className="text-sm font-medium text-white/60">Step {index + 1}</span>
+                  </div>
 
-                <div className="mt-6 flex items-center text-white/60 group-hover:text-white transition-colors">
-                  <span className="text-sm">Learn more</span>
-                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                </div>
+                  {/* Content */}
+                  <div className="space-y-2">
+                    <h3 className="text-xl font-semibold text-white">
+                      {step.title}
+                    </h3>
+                    <p className="text-white/60 text-base">
+                      {step.description}
+                    </p>
+                    
+                    {/* Features */}
+                    <motion.div 
+                      className="grid grid-cols-2 gap-4 mt-6"
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ 
+                        opacity: activeStep === index ? 1 : 0,
+                        height: activeStep === index ? 'auto' : 0
+                      }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      {step.features.map((feature, featureIndex) => (
+                        <div 
+                          key={featureIndex}
+                          className="flex items-center gap-2 text-white/60"
+                        >
+                          <CheckCircle2 className="h-4 w-4 text-white/40" />
+                          <span className="text-sm">{feature}</span>
+                        </div>
+                      ))}
+                    </motion.div>
 
-              </div>
-              
-              {index < steps.length - 1 && (
-                <div className="hidden lg:block absolute top-1/2 -right-3 transform -translate-y-1/2 z-10">
-                  <div className="w-6 h-[2px] bg-gradient-to-r from-white/20 to-transparent group-hover:from-white/30 transition-colors duration-300"></div>
+                    {/* Learn More Link */}
+                    <div className="flex items-center mt-6 text-white/60 group-hover:text-white transition-colors">
+                      <span className="text-sm font-medium">Подробнее</span>
+                      <ArrowRight className="ml-2 h-4 w-4 transform group-hover:translate-x-1 transition-transform" />
+                    </div>
+                  </div>
                 </div>
-              )}
-            </motion.div>
-          ))}
+              </motion.div>
+            );
+          })}
         </div>
-      </div>
+      </div>  
     </section>
   );
 }

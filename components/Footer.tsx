@@ -1,8 +1,10 @@
 "use client";
 
 import { motion } from 'framer-motion';
-import { Github, Twitter, Linkedin, Mail, ArrowUpRight, Heart } from 'lucide-react';
+import { Github, Mail } from 'lucide-react';
 import Link from 'next/link';
+import { ArrowUpRight } from 'lucide-react';
+import { IconBrandTelegram } from '@tabler/icons-react';
 
 const footerLinks = [
   {
@@ -19,7 +21,7 @@ const footerLinks = [
     links: [
       { name: "Веб-разработка", href: "#web-dev" },
       { name: "Мобильные приложения", href: "#mobile" },
-      { name: "Облачные сервисы", href: "#cloud" },
+      { name: "Telegram боты", href: "#telegram" },
       { name: "Интеграция API", href: "#api" }
     ]
   },
@@ -36,16 +38,15 @@ const footerLinks = [
 
 const socialLinks = [
   { name: "Github", icon: Github, href: "#" },
-  { name: "Twitter", icon: Twitter, href: "#" },
-  { name: "LinkedIn", icon: Linkedin, href: "#" },
-  { name: "Email", icon: Mail, href: "#" }
+  { name: "Telegram", icon: IconBrandTelegram, href: "https://t.me/xouston" },
+  { name: "Email", icon: Mail, href: "mailto:contact@xouston.com" }
 ];
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative overflow-hidden bg-black">
+    <footer className="relative overflow-hidden bg-black/60 backdrop-blur-sm">
       {/* Background Elements */}
       <div className="absolute inset-0 bg-gradient-to-tr from-indigo-900/20 via-transparent to-emerald-900/20" />
       <div className="absolute inset-0 bg-grid-white/[0.02]" />

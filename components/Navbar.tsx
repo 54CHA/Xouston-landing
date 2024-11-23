@@ -3,6 +3,9 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ChevronDown, ExternalLink, Sparkles, ArrowRight } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useModal } from '@/contexts/ModalContext';
 
 const navigation = [
   { name: 'Услуги', href: '#services' },
@@ -12,7 +15,7 @@ const navigation = [
     children: [
       { name: 'Веб-разработка', href: '#web-dev', description: 'Современные веб-приложения на Next.js' },
       { name: 'Мобильные приложения', href: '#mobile', description: 'Разработка для iOS и Android' },
-      { name: 'Облачные сервисы', href: '#cloud', description: 'Масштабируемая облачная инфраструктура' },
+      { name: 'Telegram боты', href: '#telegram', description: 'Автоматизация и интеграция через Telegram' },
     ]
   },
   { name: 'Контакты', href: '#contact' },
@@ -22,6 +25,7 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
+  const { openRequestModal } = useModal();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -41,7 +45,7 @@ export default function Navbar() {
         ${scrolled ? 'max-w-5xl py-2' : 'max-w-7xl py-4'}`}
       >
         {/* Enhanced Glassmorphic Background with Gradient Border */}
-        <div className="absolute inset-0 bg-black/40 backdrop-blur-xl rounded-full" />
+        <div className="absolute inset-0 bg-black/40 backdrop-blur-lg rounded-full" />
         <div className={`absolute inset-x-0 -bottom-px h-[1px] bg-gradient-to-r 
           from-transparent via-white/20 to-transparent transition-opacity duration-300 
           ${scrolled ? 'opacity-100' : 'opacity-0'}`} 
@@ -73,7 +77,7 @@ export default function Navbar() {
               
               {/* Logo text */}
               <div className="flex flex-col">
-                <span className="text-lg font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-purple-400 to-emerald-400">
+                <span className="text-2xl font-semibold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-purple-400 to-emerald-400">
                   Xouston
                 </span>
                 <span className="text-xs text-white/50 tracking-widest uppercase">
@@ -99,10 +103,10 @@ export default function Navbar() {
                       <AnimatePresence>
                         {activeDropdown === item.name && (
                           <motion.div
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: 10 }}
-                            transition={{ duration: 0.2 }}
+                            initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                            animate={{ opacity: 1, y: 0, scale: 1 }}
+                            exit={{ opacity: 0, y: 5, scale: 0.95 }}
+                            transition={{ duration: 0.2, ease: "easeOut" }}
                             className="absolute top-full left-0 mt-2 w-64 rounded-2xl bg-black/80 backdrop-blur-xl border border-white/10 p-2 shadow-2xl shadow-black/40"
                           >
                             {item.children.map((child) => (
@@ -123,18 +127,21 @@ export default function Navbar() {
                   ) : (
                     <motion.a
                       href={item.href}
-                      className="flex items-center px-4 py-2 rounded-lg text-sm text-white/70 hover:text-white hover:bg-white/5 transition-all outline-none"
-                      whileHover={{ x: 2 }}
+                      className="relative flex items-center px-4 py-2 text-sm text-white/70 transition-all duration-300 outline-none group"
+                      whileHover={{ scale: 1.02 }}
                     >
-                      {item.name}
+                      <span className="relative z-10">
+                        {item.name}
+                        <span className="absolute inset-x-0 -bottom-0.5 h-px bg-gradient-to-r from-indigo-500 to-emerald-500 origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100" />
+                      </span>
                     </motion.a>
                   )}
                 </div>
               ))}
               
               {/* Modern Glowing CTA Button */}
-              <motion.a
-                href="#contact"
+              <motion.button
+                onClick={openRequestModal}
                 className="group relative ml-4"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
@@ -153,7 +160,7 @@ export default function Navbar() {
                     <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-0.5 transition-transform duration-500" />
                   </div>
                 </div>
-              </motion.a>
+              </motion.button>
             </div>
 
             {/* Mobile menu button */}

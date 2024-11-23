@@ -1,18 +1,17 @@
 "use client";
 
 import { motion } from 'framer-motion';
-import { ArrowRight, Code2, Smartphone, Globe, Sparkles } from 'lucide-react';
+import { ArrowRight, Code2, Smartphone, Globe } from 'lucide-react';
 import Scene from './three/Scene';
+import { useModal } from '@/contexts/ModalContext';
 
 export default function Hero() {
+  const { openRequestModal } = useModal();
+
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Background Elements - matching Contact page style */}
-      <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/20 via-transparent to-emerald-900/20" />
-      <div className="absolute inset-0 bg-grid-white/[0.02]" />
-      <div className="absolute h-96 w-96 -top-48 -right-48 rounded-full bg-indigo-500/30 blur-3xl" />
-      <div className="absolute h-96 w-96 -bottom-48 -left-48 rounded-full bg-emerald-500/30 blur-3xl" />
-
+      <div className="absolute inset-0" />
+      
       <Scene />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 relative z-10">
@@ -23,15 +22,6 @@ export default function Hero() {
             transition={{ duration: 0.8 }}
           >
             <div className="sticky top-24">
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.2, duration: 0.5 }}
-                className="flex items-center space-x-2 mb-6"
-              >
-                
-              </motion.div>
-
               <h2 className="text-5xl md:text-6xl font-bold mb-6">
                 <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 to-emerald-500">
                   Создаем цифровое
@@ -44,28 +34,32 @@ export default function Hero() {
                 Мы создаем исключительные веб и мобильные решения, которые способствуют инновациям и росту прогрессивного бизнеса.
               </p>
 
-              <motion.button
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="w-full sm:w-auto group relative mb-4 sm:mb-0 sm:mr-4"
-              >
-                <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-emerald-500 rounded-xl blur-xl opacity-50 group-hover:opacity-75 transition-opacity" />
-                <div className="relative flex items-center justify-center px-6 py-4 rounded-xl bg-gradient-to-r from-indigo-500 to-emerald-500 text-white font-medium">
-                  <span>Начать проект</span>
-                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                </div>
-              </motion.button>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  onClick={openRequestModal}
+                  className="group relative"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-emerald-500 rounded-xl blur-xl opacity-50 group-hover:opacity-75 transition-opacity" />
+                  <div className="relative flex items-center justify-center px-6 py-4 rounded-xl bg-gradient-to-r from-indigo-500 to-emerald-500 text-white font-medium">
+                    <span>Заказать проект</span>
+                    <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </motion.button>
 
-              <motion.button
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="w-full sm:w-auto relative"
-              >
-                <div className="relative flex items-center justify-center px-6 py-4 rounded-xl bg-white/5 backdrop-blur-lg border border-white/10 text-white font-medium hover:bg-white/10 transition-colors">
-                  <span>Изучить услуги</span>
-                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                </div>
-              </motion.button>
+                <motion.a
+                  href="#services"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="group relative"
+                >
+                  <div className="relative flex items-center justify-center px-6 py-4 rounded-xl bg-white/5 backdrop-blur-lg border border-white/10 text-white font-medium hover:bg-white/10 transition-colors">
+                    <span>Изучить услуги</span>
+                    <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </motion.a>
+              </div>
             </div>
           </motion.div>
 

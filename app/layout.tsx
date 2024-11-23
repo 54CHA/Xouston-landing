@@ -3,6 +3,8 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import Navbar from '@/components/Navbar';
 import { ThemeProvider } from '@/components/theme-provider';
+import { ModalProvider } from '@/contexts/ModalContext';
+import RequestModal from '@/components/RequestModal';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -25,8 +27,11 @@ export default function RootLayout({
           enableSystem={false}
           disableTransitionOnChange
         >
-          <Navbar />
-          {children}
+          <ModalProvider>
+            <Navbar />
+            {children}
+            <RequestModal />
+          </ModalProvider>
         </ThemeProvider>
       </body>
     </html>

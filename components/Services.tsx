@@ -3,49 +3,38 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Code2, Smartphone, Globe, Rocket, Database, Lock, ArrowRight } from 'lucide-react';
 import { useRef } from 'react';
+import { IconBrandTelegram } from '@tabler/icons-react';
 
 const services = [
   {
-    icon: Code2,
-    title: "Веб-разработка",
-    description: "Современные веб-приложения, созданные с использованием передовых технологий.",
-    gradient: "from-indigo-500 to-violet-500",
-    delay: 0.2
+    title: "Сайты",
+    description: "Современные, быстрые и адаптивные сайты для вашего бизнеса.",
+    delay: 0.2,
+    icon: Globe
   },
   {
-    icon: Smartphone,
-    title: "Мобильная разработка",
-    description: "Нативные iOS и Android приложения с исключительным пользовательским опытом.",
-    gradient: "from-cyan-500 to-blue-500",
-    delay: 0.3
+    title: "Веб-приложения",
+    description: "Сложные веб-приложения с богатым функционалом и интерактивностью.",
+    delay: 0.3,
+    icon: Code2
   },
   {
-    icon: Globe,
-    title: "Прогрессивные веб-приложения",
-    description: "Быстрые и надежные веб-приложения с поддержкой офлайн режима.",
-    gradient: "from-emerald-500 to-green-500",
-    delay: 0.4
+    title: "Telegram/ВК сервисы",
+    description: "Боты, мини-приложения и другие интеграции.",
+    delay: 0.4,
+    icon: IconBrandTelegram
   },
   {
-    icon: Database,
-    title: "Серверная разработка",
-    description: "Масштабируемые серверные решения и надежные API архитектуры.",
-    gradient: "from-orange-500 to-red-500",
-    delay: 0.5
+    title: "Мобильные приложения",
+    description: "Нативные приложения для iOS и Android с современным дизайном.",
+    delay: 0.5,
+    icon: Smartphone
   },
   {
-    icon: Lock,
-    title: "Решения безопасности",
-    description: "Внедрение лучших практик безопасности и защиты данных.",
-    gradient: "from-pink-500 to-rose-500",
-    delay: 0.6
-  },
-  {
-    icon: Rocket,
-    title: "Оптимизация производительности",
-    description: "Услуги по оптимизации скорости и повышению производительности.",
-    gradient: "from-amber-500 to-yellow-500",
-    delay: 0.7
+    title: "Особые проекты",
+    description: "Нестандартные решения и индивидуальные разработки под ваши уникальные задачи.",
+    delay: 0.6,
+    icon: Rocket
   }
 ];
 
@@ -59,13 +48,8 @@ export default function Services() {
   const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
 
   return (
-    <section id="services" className="relative py-32 overflow-hidden bg-black -mt-10">
-      {/* Unique Services Background */}
-      <div className="absolute inset-0 bg-gradient-to-bl from-emerald-900/20 via-transparent to-cyan-900/20" />
-      <div className="absolute inset-0 bg-grid-white/[0.02] rotate-3 scale-110" />
-      <div className="absolute h-[500px] w-[500px] -top-32 -right-32 rounded-full bg-emerald-500/20 blur-[100px] animate-blob" />
-      <div className="absolute h-[500px] w-[500px] -bottom-32 left-0 rounded-full bg-cyan-500/20 blur-[100px] animate-blob animation-delay-2000" />
-      <div className="absolute h-[500px] w-[500px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-teal-500/20 blur-[100px] animate-blob animation-delay-4000" />
+    <section id="services" className="relative py-32 overflow-hidden">
+      <div className="" />
       
       <div ref={containerRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         {/* Header Section */}
@@ -101,7 +85,7 @@ export default function Services() {
         </motion.div>
 
         {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {services.map((service, index) => (
             <motion.div
               key={service.title}
@@ -109,50 +93,36 @@ export default function Services() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: service.delay }}
-              className="group relative"
+              className={`group relative ${
+                index === 4 ? 'md:col-span-2 lg:col-span-1 lg:col-start-2' : ''
+              }`}
             >
-              {/* Card Container */}
-              <div className="relative h-full rounded-2xl bg-white/[0.03] backdrop-blur-3xl border border-white/[0.05] transition-all duration-700">
-                {/* Gradient Glow on Hover */}
-                <div className="absolute -z-10 -inset-1 rounded-2xl bg-gradient-to-r from-indigo-500 to-emerald-500 opacity-0 group-hover:opacity-20 blur-xl transition-all duration-700" />
-                
-                {/* Card Content */}
-                <div className="p-8">
-                  {/* Icon with Gradient Background */}
+              <div className="relative h-full bg-white/5 backdrop-blur-lg border border-white/10 hover:bg-white/10 transition-all duration-300 p-8 rounded-2xl overflow-hidden">
+                {/* Icon - Updated styles */}
+                <div className="absolute -top-4 -right-4 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3">
+                  <service.icon className="w-24 h-24 text-white/[0.03] group-hover:text-indigo-300/[0.3] transition-colors duration-300" />
+                </div>
+
+                {/* Number indicator */}
+                <div className="relative z-10">
                   <div className="relative inline-flex mb-6">
-                    <div className={`absolute inset-0 bg-gradient-to-r ${service.gradient} rounded-xl hover-fade`} />
-                    <motion.div
-                      whileHover={{ scale: 1.05 }}
-                      transition={{ duration: 0.3 }}
-                      className={`relative p-4 rounded-xl bg-gradient-to-r ${service.gradient} bg-opacity-10`}
-                    >
-                      <service.icon className="h-6 w-6 text-white" />
-                    </motion.div>
+                    <span className="px-3 py-1 text-sm text-white/90 bg-white/5 rounded-full border border-white/10">
+                      {String(index + 1).padStart(2, '0')}
+                    </span>
                   </div>
 
-                  {/* Title with Gradient Hover Effect */}
-                  <h3 className="text-xl font-semibold mb-3">
-                    <span className="inline-block bg-clip-text transition-all duration-700 ease-in-out group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-indigo-400 group-hover:to-emerald-400">
-                      {service.title}
-                    </span>
+                  <h3 className="text-2xl font-medium mb-3 text-white group-hover:text-indigo-300 transition-colors">
+                    {service.title}
                   </h3>
 
-                  {/* Description */}
-                  <p className="text-indigo-200/80 text-sm leading-relaxed transition-colors duration-700">
+                  <p className="text-neutral-400 text-sm leading-relaxed group-hover:text-neutral-300 transition-colors">
                     {service.description}
                   </p>
 
-                  {/* Learn More Link with Enhanced Hover Effect */}
-                  <div className="relative inline-flex items-center">
-                    <motion.div
-                      whileHover={{ x: 4 }}
-                      className="flex items-center text-white/60 hover:text-white transition-colors duration-300"
-                    >
-                      <span className="text-sm font-medium">Узнать больше</span>
-                 
-                    </motion.div>
-                    {/* Animated Underline */}
-                    <div className="absolute bottom-0 left-0 w-0 h-[1px] bg-gradient-to-r from-indigo-500 to-emerald-500 group-hover:w-full transition-all duration-300" />
+                  {/* Arrow indicator */}
+                  <div className="mt-6 flex items-center text-white/60 group-hover:text-white transition-colors">
+                    <span className="text-sm">Learn more</span>
+                    <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                   </div>
                 </div>
               </div>
