@@ -16,7 +16,7 @@ export default function Hero() {
   
     
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 relative z-10 mt-20 lg:mt-0">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -24,7 +24,7 @@ export default function Hero() {
             transition={{ duration: 0.8 }}
           >
             <div className="sticky top-24">
-              <h2 className="text-5xl md:text-6xl font-bold mb-6">
+              <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6">
                 <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 to-emerald-500">
                   Создаем цифровое
                 </span>
@@ -96,20 +96,26 @@ export default function Hero() {
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="group"
+                  className="group cursor-pointer"
                 >
-                  <div className="relative flex items-center space-x-6 p-4 rounded-2xl bg-white/5 backdrop-blur-lg border border-white/10 hover:bg-white/10 transition-all duration-300">
-                    <div className="flex-shrink-0">
-                      <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500/10 to-emerald-500/10 border border-white/10">
-                        <item.icon className="h-6 w-6 text-white" />
+                  <a href="#services" className="block">
+                    <div className="relative flex items-center space-x-6 p-4 rounded-2xl bg-white/5 backdrop-blur-lg border border-white/10 hover:bg-white/10 transition-all duration-300 overflow-hidden">
+                      <div className="absolute inset-0 opacity-0 group-hover:opacity-100">
+                        <div className="absolute inset-0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
                       </div>
+                      
+                      <div className="flex-shrink-0">
+                        <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500/10 to-emerald-500/10 border border-white/10">
+                          <item.icon className="h-6 w-6 text-white" />
+                        </div>
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-semibold text-white">{item.title}</h3>
+                        <p className="text-indigo-200">{item.description}</p>
+                      </div>
+                      <ArrowRight className="absolute right-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300 text-white" />
                     </div>
-                    <div>
-                      <h3 className="text-lg font-semibold text-white">{item.title}</h3>
-                      <p className="text-indigo-200">{item.description}</p>
-                    </div>
-                    <ArrowRight className="absolute right-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300 text-white" />
-                  </div>
+                  </a>
                 </motion.div>
               ))}
             </div>

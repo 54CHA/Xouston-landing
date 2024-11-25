@@ -148,15 +148,15 @@ export default function Services() {
                       {service.title}
                     </h3>
 
-                    <p className="text-neutral-400 text-sm leading-relaxed group-hover:text-neutral-300 transition-colors">
+                    <p className="text-neutral-400 text-sm leading-relaxed group-hover:text-neutral-300 transition-colors pb-8">
                       {service.description}
                     </p>
 
                     {/* Arrow indicator */}
-                    <div className="mt-6 flex items-center text-white/60 group-hover:text-white transition-colors">
+                    {/* <div className="mt-6 flex items-center text-white/60 group-hover:text-white transition-colors">
                       <span className="text-sm">Learn more</span>
                       <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </motion.div>

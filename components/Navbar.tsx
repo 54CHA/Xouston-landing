@@ -7,19 +7,26 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useModal } from '@/contexts/ModalContext';
 
-const navigation = [
+type NavItem = {
+  name: string;
+  href: string;
+  children?: { name: string; href: string; description: string; }[];
+};
+
+const navigation: NavItem[] = [
   { name: 'Услуги', href: '#services' },
   { name: 'Процесс', href: '#process' },
-  { 
-    name: 'Решения', 
-    children: [
-      { name: 'Веб-разработка', href: '#web-dev', description: 'Современные веб-приложения на Next.js' },
-      { name: 'Мобильные приложения', href: '#mobile', description: 'Разработка для iOS и Android' },
-      { name: 'Telegram боты', href: '#telegram', description: 'Автоматизация и интеграция через Telegram' },
-    ]
-  },
+  { name: 'Команда', href: '#team' },
   { name: 'Контакты', href: '#contact' },
 ];
+
+const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  e.preventDefault();
+  const element = document.querySelector(href);
+  if (element) {
+    element.scrollIntoView({ behavior: 'smooth' });
+  }
+};
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -127,6 +134,7 @@ export default function Navbar() {
                   ) : (
                     <motion.a
                       href={item.href}
+                      onClick={(e) => scrollToSection(e, item.href)}
                       className="relative flex items-center px-4 py-2 text-sm text-white/70 transition-all duration-300 outline-none group"
                       whileHover={{ scale: 1.02 }}
                     >
@@ -206,6 +214,7 @@ export default function Navbar() {
                   ) : (
                     <motion.a
                       href={item.href}
+                      onClick={(e) => scrollToSection(e, item.href)}
                       className="block rounded-lg px-3 py-2 text-sm text-white/70 hover:text-white hover:bg-white/10 transition-colors"
                       whileTap={{ scale: 0.95 }}
                     >

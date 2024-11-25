@@ -1,25 +1,21 @@
-"use client";
-
 import { useRef } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
+import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 
-function AbstractShape() {
-  const meshRef = useRef<THREE.Mesh | null>(null);
-  const materialRef = useRef<THREE.ShaderMaterial | null>(null);
+export function AbstractShape() {
+  const meshRef = useRef<THREE.Mesh>(null);
+  const materialRef = useRef<THREE.ShaderMaterial>(null);
 
   const shader = {
     uniforms: {
       time: { value: 0 },
-      color1: { value: new THREE.Color("#4f46e5") },
-      color2: { value: new THREE.Color("#22d3ee") },
+      color1: { value: new THREE.Color("#4f46e5") }, // Indigo
+      color2: { value: new THREE.Color("#22d3ee") }, // Cyan
     },
     vertexShader: `
       varying vec2 vUv;
       varying vec3 vNormal;
       uniform float time;
-      
-      #define PI 3.14159265359
       
       void main() {
         vUv = uv;
@@ -27,8 +23,8 @@ function AbstractShape() {
         
         vec3 pos = position;
         
-        // Complex morphing
-        float theta = pos.y * 2.0 + time * 0.2;
+        // Smooth morphing
+        float theta = pos.y * 2.0 + time * 0.5;
         float c = cos(theta);
         float s = sin(theta);
         
@@ -36,9 +32,9 @@ function AbstractShape() {
         
         // Organic deformation
         pos += normal * (
-          sin(pos.y * 4.0 + time * 0.4) * 0.2 +
-          cos(pos.x * 4.0 + time * 0.3) * 0.2 +
-          sin(pos.z * 4.0 + time * 0.2) * 0.2
+          sin(pos.y * 4.0 + time) * 0.1 +
+          cos(pos.x * 4.0 + time * 0.7) * 0.1 +
+          sin(pos.z * 4.0 + time * 0.5) * 0.1
         );
         
         gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
@@ -58,14 +54,14 @@ function AbstractShape() {
         
         // Fresnel effect
         float fresnel = pow(1.0 - dot(vNormal, vec3(0.0, 0.0, 1.0)), 2.0);
-        color += fresnel * 0.4;
+        color += fresnel * 0.2; // Reduced fresnel intensity
         
         // Pulse effect
-        float pulse = sin(time * 0.2) * 0.5 + 0.5;
-        color *= 0.8 + pulse * 0.2;
+        float pulse = sin(time * 0.5) * 0.5 + 0.5;
+        color *= 0.6 + pulse * 0.1; // Reduced overall brightness
         
-        // Reduced opacity for better form visibility
-        float alpha = 0.4 + fresnel * 0.2;
+        // More transparency
+        float alpha = 0.3 + fresnel * 0.1; // Reduced base opacity
         
         gl_FragColor = vec4(color, alpha);
       }
@@ -77,33 +73,25 @@ function AbstractShape() {
       materialRef.current.uniforms.time.value = state.clock.getElapsedTime();
     }
     if (meshRef.current) {
-      meshRef.current.rotation.x = Math.sin(state.clock.getElapsedTime() * 0.1) * 0.1;
-      meshRef.current.rotation.y = state.clock.getElapsedTime() * 0.05;
+      meshRef.current.rotation.x = Math.sin(state.clock.getElapsedTime() * 0.2) * 0.1;
+      meshRef.current.rotation.y = state.clock.getElapsedTime() * 0.1;
     }
   });
 
   return (
-    <mesh ref={meshRef} position={[0, 0, -1.2]} scale={0.3}>
-      <torusKnotGeometry args={[0.7, 0.3, 128, 32]} />
+    <mesh ref={meshRef} position={[0, 0, 0]} scale={1.5}>
+      <icosahedronGeometry args={[1, 4]} />
       <shaderMaterial
         ref={materialRef}
         args={[shader]}
         transparent
         side={THREE.DoubleSide}
         depthWrite={false}
+        blending={THREE.AdditiveBlending}
+        opacity={0.6}
       />
     </mesh>
   );
 }
 
-export default function ModalBackground() {
-  return (
-    <div className="absolute inset-0">
-      <Canvas camera={{ position: [0, 0, 0], fov: 45 }}>
-        <color attach="background" args={['#000000']} />
-        <fog attach="fog" args={['#000000', 3, 7]} />
-        <AbstractShape />
-      </Canvas>
-    </div>
-  );
-} 
+export default AbstractShape; 
