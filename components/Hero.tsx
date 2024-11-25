@@ -13,6 +13,8 @@ export default function Hero() {
       <div className="absolute inset-0" />
       
       <Scene />
+  
+    
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -84,8 +86,8 @@ export default function Hero() {
                 },
                 {
                   icon: Globe,
-                  title: "Глобальный охват",
-                  description: "Масштабируемые решения для международного развертывания",
+                  title: "Кастомные решения",
+                  description: "Разработка уникальных и инновационных продуктов для вашего бизнеса",
                   gradient: "from-blue-500 to-violet-500"
                 }
               ].map((item, index) => (

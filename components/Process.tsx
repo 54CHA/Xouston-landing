@@ -8,7 +8,7 @@ const steps = [
   {
     icon: FileSignature,
     title: "Подпись договора",
-    description: "Обсуждаем все детали проекта и заключаем договор с четкими условиями.",
+    description: "Обсуждаем все детали проекта, создаем и заключаем договор с четкими условиями.",
     gradient: "from-violet-500 to-indigo-500",
     features: [
       "Согласование условий",
@@ -92,23 +92,32 @@ export default function Process() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm mb-6"
+            className="mb-6"
           >
-            <span className="text-sm text-white/80">Как мы работаем</span>
+            <span className="relative inline-block">
+              <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-emerald-500 blur-lg opacity-25" />
+              <span className="relative px-6 py-2 text-sm text-white/90 bg-white/5 rounded-full border border-white/10 backdrop-blur-sm">
+                Как мы работаем
+              </span>
+            </span>
           </motion.div>
+
           <motion.h2
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-4xl md:text-5xl font-bold text-white mb-6"
+            className="text-4xl md:text-5xl font-bold mb-6"
           >
-            Наш процесс
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-violet-400 to-emerald-400"> разработки</span>
+            <span className="text-white">Наш процесс</span>
+            <br />
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-cyan-400 to-emerald-400">
+              разработки
+            </span>
           </motion.h2>
         </motion.div>
 
-        <div className="relative h-[400vh]">
+        <div className="relative h-[400vh] flex flex-col items-center">
           {steps.map((step, index) => {
             const { scrollYProgress } = useScroll({
               target: containerRef,
@@ -181,57 +190,61 @@ export default function Process() {
                   y,
                   scale,
                   transformOrigin: "center top",
+                  maxWidth: "900px",
+                  width: "100%"
                 }}
                 className="group"
               >
-                <div className="relative bg-black/40 backdrop-blur-xl border border-white/10 p-8 rounded-2xl hover:bg-black/50 transition-all duration-300">
+                <div 
+                  className="relative bg-black/40 backdrop-blur-xl border border-white/10 p-8 rounded-2xl hover:bg-black/50 transition-all duration-300 group/card"
+                  style={{ transition: 'transform 0.1s ease-out' }}
+                >
                   {/* Gradient Overlay */}
                   <div className={`absolute inset-0 bg-gradient-to-r ${step.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-300 rounded-2xl`} />
                   
-                  {/* Icon and Number */}
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className={`p-3 rounded-xl bg-gradient-to-r ${step.gradient} bg-opacity-10`}>
-                      <step.icon className="h-6 w-6 text-white" />
+                  {/* Header Section */}
+                  <div className="flex items-start justify-between mb-6">
+                    <div className="flex-1">
+                      <span className="text-sm font-medium text-white/60 mb-2 block">Этап {index + 1}</span>
+                      <h3 className="text-2xl font-semibold text-white">
+                        {step.title}
+                      </h3>
                     </div>
-                    <span className="text-sm font-medium text-white/60">Step {index + 1}</span>
-                  </div>
-
-                  {/* Content */}
-                  <div className="space-y-2">
-                    <h3 className="text-xl font-semibold text-white">
-                      {step.title}
-                    </h3>
-                    <p className="text-white/60 text-base">
-                      {step.description}
-                    </p>
-                    
-                    {/* Features */}
-                    <motion.div 
-                      className="grid grid-cols-2 gap-4 mt-6"
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ 
-                        opacity: activeStep === index ? 1 : 0,
-                        height: activeStep === index ? 'auto' : 0
-                      }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      {step.features.map((feature, featureIndex) => (
-                        <div 
-                          key={featureIndex}
-                          className="flex items-center gap-2 text-white/60"
-                        >
-                          <CheckCircle2 className="h-4 w-4 text-white/40" />
-                          <span className="text-sm">{feature}</span>
-                        </div>
-                      ))}
-                    </motion.div>
-
-                    {/* Learn More Link */}
-                    <div className="flex items-center mt-6 text-white/60 group-hover:text-white transition-colors">
-                      <span className="text-sm font-medium">Подробнее</span>
-                      <ArrowRight className="ml-2 h-4 w-4 transform group-hover:translate-x-1 transition-transform" />
+                    <div className={`flex-shrink-0 ml-4 w-12 h-12 rounded-xl bg-gradient-to-r ${step.gradient} p-[1px]`}>
+                      <div className="w-full h-full bg-black/80 rounded-xl flex items-center justify-center">
+                        <step.icon className="h-5 w-5 text-white" />
+                      </div>
                     </div>
                   </div>
+
+                  {/* Description */}
+                  <p className="text-white/60 text-base mb-6">
+                    {step.description}
+                  </p>
+                  
+                  {/* Features */}
+                  <motion.div 
+                    className="grid grid-cols-2 gap-x-6 gap-y-4"
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ 
+                      opacity: activeStep === index ? 1 : 0,
+                      height: activeStep === index ? 'auto' : 0
+                    }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    {step.features.map((feature, featureIndex) => (
+                      <div 
+                        key={featureIndex}
+                        className="flex items-center gap-2"
+                      >
+                        <div className="w-1 h-1 rounded-full bg-white/40" />
+                        <span className="text-sm text-white/60">{feature}</span>
+                      </div>
+                    ))}
+                  </motion.div>
+
+                  {/* Learn More Link */}
+                  
                 </div>
               </motion.div>
             );

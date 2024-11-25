@@ -22,14 +22,11 @@ const footerLinks = [
       { name: "Веб-разработка", href: "#web-dev" },
       { name: "Мобильные приложения", href: "#mobile" },
       { name: "Telegram боты", href: "#telegram" },
-      { name: "Интеграция API", href: "#api" }
     ]
   },
   {
     title: "Ресурсы",
     links: [
-      { name: "Документация", href: "#docs" },
-      { name: "Блог", href: "#blog" },
       { name: "Кейсы", href: "#cases" },
       { name: "FAQ", href: "#faq" }
     ]
