@@ -68,7 +68,7 @@ export default function Footer() {
                     </div>
                   </div>
                 </div>
-                
+                {/* 800835 */}
                 {/* Logo text */}
                 <div className="flex flex-col">
                   <span className="text-2xl font-semibold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-purple-400 to-emerald-400">
