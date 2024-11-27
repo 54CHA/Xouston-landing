@@ -84,7 +84,7 @@ export default function Process() {
   const [activeStep, setActiveStep] = useState<number | null>(null);
   
   return (
-    <section ref={containerRef} className="relative py-32">
+    <section id="process" ref={containerRef} className="relative py-32">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div className="text-center mb-20">
           <motion.div
