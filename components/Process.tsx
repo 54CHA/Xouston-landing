@@ -7,7 +7,7 @@ import { useRef, useState } from 'react';
 const steps = [
   {
     icon: FileSignature,
-    title: "Подпись договора",
+    title: "Подписание договора",
     description: "Обсуждаем все детали проекта, создаем и заключаем договор с четкими условиями.",
     gradient: "from-violet-500 to-indigo-500",
     features: [

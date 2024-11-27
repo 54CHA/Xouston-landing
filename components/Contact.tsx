@@ -27,7 +27,6 @@ export default function Contact() {
   const [formState, setFormState] = useState({
     name: '',
     contact: '',
-    position: '',
     company: '',
     description: ''
   });
@@ -121,10 +120,9 @@ export default function Contact() {
                   {[
                     { label: 'Имя', value: 'name', placeholder: 'Ваше имя' },
                     { label: 'Контакт', value: 'contact', placeholder: 'Telegram/Email/Phone' },
-                    { label: 'Должность', value: 'position', placeholder: 'Ваша должность' },
-                    { label: 'Компания', value: 'company', placeholder: 'Название компании' }
+                    { label: 'Компания', value: 'company', placeholder: 'Название компании', className: "col-span-2" }
                   ].map((field) => (
-                    <div key={field.value}>
+                    <div key={field.value} className={field.className}>
                       <label className="block text-xs sm:text-sm font-medium text-indigo-200 mb-1 sm:mb-2">
                         {field.label}
                       </label>

@@ -100,7 +100,7 @@ export default function Navbar() {
                   Xouston
                 </span>
                 <span className="text-xs text-white/50 tracking-widest uppercase">
-                  Design Lab
+                  Digital Lab
                 </span>
               </div>
             </motion.a>

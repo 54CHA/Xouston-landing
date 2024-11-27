@@ -13,7 +13,6 @@ export default function RequestModal() {
   const [formState, setFormState] = useState({
     name: '',
     contact: '',
-    position: '',
     company: '',
     description: ''
   });
@@ -38,7 +37,7 @@ export default function RequestModal() {
       setTimeout(() => {
         closeRequestModal();
         setStatus('idle');
-        setFormState({ name: '', contact: '', position: '', company: '', description: '' });
+        setFormState({ name: '', contact: '', company: '', description: '' });
       }, 2000);
     } catch (error) {
       setStatus('error');
@@ -111,11 +110,10 @@ export default function RequestModal() {
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                       {[
                         { label: 'Имя', value: 'name', placeholder: 'Ваше имя' },
-                        { label: 'Контакт', value: 'contact', placeholder: 'Telegram/Email/Phone' },
-                        { label: 'Должность', value: 'position', placeholder: 'Ваша должность' },
-                        { label: 'Компания', value: 'company', placeholder: 'Название компании' }
+                        { label: 'Компания', value: 'company', placeholder: 'Название компании' },
+                        { label: 'Контакт', value: 'contact', placeholder: 'Telegram/Email/Phone', className: "col-span-2" }
                       ].map((field) => (
-                        <div key={field.value}>
+                        <div key={field.value} className={field.className}>
                           <label className="block text-xs sm:text-sm font-medium text-white/80 mb-1">
                             {field.label}
                           </label>
