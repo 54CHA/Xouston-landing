@@ -64,14 +64,14 @@ export default function Contact() {
                   { 
                     icon: Mail, 
                     label: "Электронная почта", 
-                    value: "shsha.khv@gmail.com",
-                    href: "mailto:shsha.khv@gmail.com"
+                    value: "contact@xouston.com",
+                    href: "mailto:contact@xouston.com"
                   },
                   { 
                     icon: MessageSquare, 
                     label: "Telegram", 
-                    value: "@sachakhv",
-                    href: "https://t.me/sachakhv"
+                    value: "@XoustonLab",
+                    href: "https://t.me/XoustonLab"
                   },
                   { 
                     icon: Globe, 
