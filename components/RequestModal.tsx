@@ -48,12 +48,17 @@ export default function RequestModal() {
   return (
     <AnimatePresence>
       {isRequestModalOpen && (
-        <div className="fixed inset-0 bg-black/20 backdrop-blur-md flex items-center justify-center z-50 p-4 sm:p-8">
+        <div 
+          className="fixed inset-0 bg-black/20 backdrop-blur-md flex items-center justify-center z-50 p-4 sm:p-8 overflow-y-auto"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) closeRequestModal();
+          }}
+        >
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
-            className="border border-purple-500/10 rounded-2xl sm:rounded-3xl w-full max-w-2xl relative overflow-hidden"
+            className="border border-purple-500/10 rounded-2xl sm:rounded-3xl w-full max-w-2xl relative overflow-hidden my-auto"
           >
             <ModalBackground />
             
@@ -81,7 +86,7 @@ export default function RequestModal() {
             <div className="relative z-10 p-4 sm:p-8 md:p-12">
               <button
                 onClick={closeRequestModal}
-                className="absolute right-2 top-2 sm:right-4 sm:top-4 p-2 rounded-full hover:bg-white/10 duration-400 hover:scale-110 transition-all"
+                className="absolute right-2 top-2 sm:right-4 sm:top-10 p-2 rounded-full hover:bg-white/10 duration-400 hover:scale-110 transition-all"
               >
                 <X className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
               </button>
@@ -111,7 +116,7 @@ export default function RequestModal() {
                       {[
                         { label: 'Имя', value: 'name', placeholder: 'Ваше имя' },
                         { label: 'Компания', value: 'company', placeholder: 'Название компании' },
-                        { label: 'Контакт', value: 'contact', placeholder: 'Telegram/Email/Phone', className: "col-span-2" }
+                        { label: 'Контакт', value: 'contact', placeholder: 'Telegram/Email/Phone', className: "sm:col-span-2" }
                       ].map((field) => (
                         <div key={field.value} className={field.className}>
                           <label className="block text-xs sm:text-sm font-medium text-white/80 mb-1">

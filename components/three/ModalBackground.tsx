@@ -83,7 +83,7 @@ function AbstractShape() {
   });
 
   return (
-    <mesh ref={meshRef} position={[0, 0, -1.2]} scale={0.3}>
+    <mesh ref={meshRef} position={[0, 0, -1.2]} scale={1}>
       <torusKnotGeometry args={[0.7, 0.3, 128, 32]} />
       <shaderMaterial
         ref={materialRef}
