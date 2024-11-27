@@ -1,7 +1,7 @@
 #!/bin/bash
 
 SESSION_NAME="xouston"
-REPO_DIR="$HOME/front"
+REPO_DIR="$HOME/github/front"
 GIT_REPO_URL="https://github.com/54CHA/Xouston-landing.git"
 
 # Функция для выполнения команд в tmux
