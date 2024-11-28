@@ -114,8 +114,8 @@ export default function RequestModal() {
                   <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                       {[
-                        { label: 'Имя', value: 'name', placeholder: 'Ваше имя' },
-                        { label: 'Компания', value: 'company', placeholder: 'Название компании' },
+                        { label: 'Имя', value: 'name', placeholder: 'Как к вам обращаться?' },
+                        { label: 'Компания', value: 'company', placeholder: 'Если названия еще нет, не проблема' },
                         { label: 'Контакт', value: 'contact', placeholder: 'Telegram/Email/Phone', className: "sm:col-span-2" }
                       ].map((field) => (
                         <div key={field.value} className={field.className}>
@@ -138,7 +138,7 @@ export default function RequestModal() {
 
                       <div className="sm:col-span-2">
                         <label className="block text-xs sm:text-sm font-medium text-white/80 mb-1">
-                          Опишите вашу задачу
+                          Опишите вашу идею
                         </label>
                         <textarea
                           required
@@ -149,7 +149,7 @@ export default function RequestModal() {
                             rounded-lg focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 
                             text-white placeholder-white/50 text-sm sm:text-base shadow-lg 
                             transition-all hover:bg-white/15"
-                          placeholder="Расскажите подробнее о вашей задаче..."
+                          placeholder="Расскажите в общих чертах, детали обсудим лично..."
                         />
                       </div>
                     </div>

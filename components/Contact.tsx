@@ -142,7 +142,7 @@ export default function Contact() {
 
                   <div className="sm:col-span-2">
                     <label className="block text-xs sm:text-sm font-medium text-indigo-200 mb-1 sm:mb-2">
-                      Опишите вашу задачу
+                      Опишите вашу идею
                     </label>
                     <textarea
                       required
