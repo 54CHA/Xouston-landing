@@ -33,7 +33,7 @@ export default function Hero() {
               </h2>
 
               <p className="text-xl text-indigo-200 mb-8">
-                Мы создаем исключительные веб и мобильные решения, которые способствуют инновациям и росту прогрессивного бизнеса.
+                Мы создаем уникальные мобильные и веб решения, которые способствуют росту прогрессивного бизнеса
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4">
@@ -45,7 +45,7 @@ export default function Hero() {
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-emerald-500 rounded-xl blur-xl opacity-50 group-hover:opacity-75 transition-opacity" />
                   <div className="relative flex items-center justify-center px-6 py-4 rounded-xl bg-gradient-to-r from-indigo-500 to-emerald-500 text-white font-medium">
-                    <span>Заказать проект</span>
+                    <span>Оставить заявку</span>
                     <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                   </div>
                 </motion.button>

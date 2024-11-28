@@ -8,31 +8,31 @@ import { IconBrandTelegram } from '@tabler/icons-react';
 const services = [
   {
     title: "Сайты",
-    description: "Современные, быстрые и адаптивные сайты для вашего бизнеса.",
+    description: "Современные, быстрые и адаптивные сайты для вашего бизнеса",
     delay: 0.2,
     icon: Globe
   },
   {
     title: "Веб-приложения",
-    description: "Сложные веб-приложения с богатым функционалом и интерактивностью.",
+    description: "Сложные веб-приложения с богатым функционалом и интерактивностью",
     delay: 0.3,
     icon: Code2
   },
   {
     title: "Telegram/ВК сервисы",
-    description: "Боты, мини-приложения и другие интеграции.",
+    description: "Боты, мини-приложения и другие интеграции",
     delay: 0.4,
     icon: IconBrandTelegram
   },
   {
     title: "Мобильные приложения",
-    description: "Нативные приложения для iOS и Android с современным дизайном.",
+    description: "Нативные приложения для iOS и Android с современным дизайном",
     delay: 0.5,
     icon: Smartphone
   },
   {
     title: "Особые проекты",
-    description: "Нестандартные решения и индивидуальные разработки под ваши уникальные задачи.",
+    description: "Нестандартные решения и индивидуальные разработки под ваши уникальные задачи",
     delay: 0.6,
     icon: Rocket
   }
@@ -104,7 +104,7 @@ export default function Services() {
             <span className="text-white">Преобразуем ваши идеи в</span>
             <br />
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-cyan-400 to-emerald-400">
-              Цифровой реальность
+              цифровую реальность
             </span>
           </motion.h2>
         </motion.div>

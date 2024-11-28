@@ -8,7 +8,7 @@ const steps = [
   {
     icon: FileSignature,
     title: "Подписание договора",
-    description: "Обсуждаем все детали проекта, создаем и заключаем договор с четкими условиями.",
+    description: "Обсуждаем все детали проекта, составляем и подписываем договор с четкими условиями",
     gradient: "from-violet-500 to-indigo-500",
     features: [
       "Согласование условий",
@@ -20,7 +20,7 @@ const steps = [
   {
     icon: Paintbrush,
     title: "Разработка и утверждение дизайна",
-    description: "Создаем уникальный дизайн, учитывая ваши пожелания и современные тенденции.",
+    description: "Создаем уникальный дизайн, учитывая ваши пожелания и современные тенденции",
     gradient: "from-cyan-500 to-blue-500",
     features: [
       "Прототипирование",
@@ -32,7 +32,7 @@ const steps = [
   {
     icon: Code2,
     title: "Разработка продукта",
-    description: "Воплощаем дизайн в полноценный рабочий продукт с использованием современных технологий.",
+    description: "Превращаем дизайн в полноценный рабочий продукт и проводим тестирование",
     gradient: "from-emerald-500 to-green-500",
     features: [
       "Frontend разработка",
@@ -44,7 +44,7 @@ const steps = [
   {
     icon: FileText,
     title: "Заполнение контентом",
-    description: "Наполняем сайт качественным контентом и необходимой информацией.",
+    description: "Наполняем сайт контентом, загружаем фотографии и текстовые материалы",
     gradient: "from-amber-500 to-orange-500",
     features: [
       "Создание текстов",
@@ -56,7 +56,7 @@ const steps = [
   {
     icon: CheckCircle2,
     title: "Сдача",
-    description: "Проводим финальное тестирование и передаем готовый проект.",
+    description: "Проводим финальное тестирование, помогаем развернуть проект и передаем все необходимые данные",
     gradient: "from-rose-500 to-red-500",
     features: [
       "Тестирование",
@@ -109,7 +109,7 @@ export default function Process() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-4xl md:text-5xl font-bold mb-6"
           >
-            <span className="text-white">Наш процесс</span>
+            <span className="text-white">Процесс</span>
             <br />
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-cyan-400 to-emerald-400">
               разработки
