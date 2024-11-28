@@ -118,9 +118,9 @@ export default function Contact() {
               <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                   {[
-                    { label: 'Имя', value: 'name', placeholder: 'Как к вам лучше обращаться?' },
+                    { label: 'Имя', value: 'name', placeholder: 'Как к вам обращаться?' },
                     { label: 'Контакт', value: 'contact', placeholder: 'Telegram/Email/Phone' },
-                    { label: 'Компания', value: 'company', placeholder: 'Если у вашей компании уже есть название, то сообщите нам его', className: "col-span-2" }
+                    { label: 'Компания', value: 'company', placeholder: 'Если названия еще нет, не проблема', className: "col-span-2" }
                   ].map((field) => (
                     <div key={field.value} className={field.className}>
                       <label className="block text-xs sm:text-sm font-medium text-indigo-200 mb-1 sm:mb-2">
