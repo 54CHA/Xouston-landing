@@ -35,8 +35,8 @@ const footerLinks = [
   {
     title: "Связаться",
     links: [
-      { name: "Telegram", href: "https://t.me/sachakhv", icon: MessageSquare },
-      { name: "Email", href: "mailto:shsha.khv@gmail.com", icon: Mail },
+      { name: "Telegram", href: "https://t.me/xouston_contact", icon: MessageSquare },
+      { name: "Email", href: "mailto:contact@xouston.com", icon: Mail },
     ],
   },
 ];

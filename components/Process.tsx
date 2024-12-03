@@ -210,22 +210,6 @@ function ProcessCard({
   );
 }
 
-// Add this to your global CSS or as a style tag
-const styles = `
-  @keyframes shimmer {
-    0% {
-      transform: translateX(-100%);
-    }
-    100% {
-      transform: translateX(100%);
-    }
-  }
-
-  .animate-shimmer {
-    animation: shimmer 8s infinite;
-  }
-`;
-
 export default function Process() {
   const containerRef = useRef<HTMLDivElement>(null);
 

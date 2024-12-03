@@ -180,19 +180,6 @@
   background-size: 200% 200%;
 }
 
-@keyframes tilt {
-  0%,
-  100% {
-    transform: rotate(0deg);
-  }
-  25% {
-    transform: rotate(0.5deg);
-  }
-  75% {
-    transform: rotate(-0.5deg);
-  }
-}
-
 .animate-tilt {
   animation: tilt 10s infinite linear;
 }
@@ -211,4 +198,17 @@
 }
 .animate-tilt {
   animation: tilt 10s infinite linear;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 8s infinite;
 }
