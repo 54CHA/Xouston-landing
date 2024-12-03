@@ -1,9 +1,9 @@
 "use client";
 
-import { Canvas } from '@react-three/fiber';
-import { Suspense } from 'react';
-import { Environment, PerspectiveCamera } from '@react-three/drei';
-import WaveField from './WaveField';
+import { Canvas } from "@react-three/fiber";
+import { Suspense } from "react";
+import { Environment, PerspectiveCamera } from "@react-three/drei";
+import WaveField from "./WaveField";
 
 export default function Scene() {
   return (
@@ -15,9 +15,9 @@ export default function Scene() {
           <WaveField />
           <Environment preset="night" />
           <ambientLight intensity={0.5} />
-          <directionalLight 
-            position={[5, 5, 5]} 
-            intensity={3} 
+          <directionalLight
+            position={[5, 5, 5]}
+            intensity={3}
             color="#ffffff"
           />
         </Suspense>

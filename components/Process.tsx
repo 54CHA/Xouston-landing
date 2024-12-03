@@ -8,7 +8,7 @@ import {
   FileText,
   CheckCircle2,
 } from "lucide-react";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 
 const steps = [
   {
@@ -212,6 +212,11 @@ function ProcessCard({
 
 export default function Process() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   return (
     <section id="process" ref={containerRef} className="relative py-32">
@@ -247,16 +252,29 @@ export default function Process() {
           </motion.h2>
         </motion.div>
 
-        <div className="relative h-[300vh]">
-          {steps.map((step, index) => (
-            <ProcessCard
-              key={step.title}
-              step={step}
-              index={index}
-              containerRef={containerRef}
-            />
-          ))}
-        </div>
+        {isClient ? (
+          <div
+            className="relative"
+            style={{
+              height: `${(steps.length + 0.15) * 100}vh`,
+              minHeight: `${steps.length * 250}px`,
+            }}
+          >
+            {steps.map((step, index) => (
+              <ProcessCard
+                key={step.title}
+                step={step}
+                index={index}
+                containerRef={containerRef}
+              />
+            ))}
+          </div>
+        ) : (
+          // Loading state
+          <div className="relative min-h-[100vh] flex items-center justify-center">
+            <div className="w-32 h-32 rounded-full border-4 border-primary/20 border-t-primary animate-spin" />
+          </div>
+        )}
       </div>
     </section>
   );
