@@ -1,10 +1,23 @@
 "use client";
 
-import { motion } from 'framer-motion';
-import { Mail, MessageSquare, Phone, ArrowRight, MapPin, Globe } from 'lucide-react';
-import { useState } from 'react';
+import { motion } from "framer-motion";
+import {
+  Mail,
+  MessageSquare,
+  Phone,
+  ArrowRight,
+  MapPin,
+  Globe,
+  CheckCircle2,
+} from "lucide-react";
+import { useState } from "react";
+import { submitForm } from "../lib/submitForm";
 
-function ContactItem({ item }: { item: { icon: any, label: string, value: string, href: string | null } }) {
+function ContactItem({
+  item,
+}: {
+  item: { icon: any; label: string; value: string; href: string | null };
+}) {
   return (
     <div className="relative flex items-center space-x-6 p-4 rounded-2xl bg-white/5 backdrop-blur-lg border border-white/10 hover:bg-white/10 transition-all duration-300">
       <div className="flex-shrink-0">
@@ -24,16 +37,46 @@ function ContactItem({ item }: { item: { icon: any, label: string, value: string
 }
 
 export default function Contact() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
   const [formState, setFormState] = useState({
-    name: '',
-    contact: '',
-    company: '',
-    description: ''
+    name: "",
+    contact: "",
+    company: "",
+    description: "",
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Add form submission logic here - can use the same logic as RequestModal
+
+    if (!formState.name || !formState.contact || !formState.description) {
+      alert("Пожалуйста, заполните все обязательные поля");
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      await submitForm(formState);
+
+      // Reset form
+      setFormState({ name: "", contact: "", company: "", description: "" });
+
+      // Show success state
+      setIsSuccess(true);
+
+      // Reset success state after 3 seconds
+      setTimeout(() => {
+        setIsSuccess(false);
+      }, 3000);
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      alert(
+        "Произошла ошибка при отправке формы. Пожалуйста, попробуйте позже."
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -58,27 +101,27 @@ export default function Contact() {
                 <br />
                 <span className="text-white">Необычное</span>
               </h2>
-              
+
               <div className="space-y-4">
                 {[
-                  { 
-                    icon: Mail, 
-                    label: "Электронная почта", 
+                  {
+                    icon: Mail,
+                    label: "Электронная почта",
                     value: "contact@xouston.com",
-                    href: "mailto:contact@xouston.com"
+                    href: "mailto:contact@xouston.com",
                   },
-                  { 
-                    icon: MessageSquare, 
-                    label: "Telegram", 
-                    value: "@XoustonLab",
-                    href: "https://t.me/XoustonLab"
+                  {
+                    icon: MessageSquare,
+                    label: "Telegram",
+                    value: "@Xouston_Contact",
+                    href: "https://t.me/Xouston_Contact",
                   },
-                  { 
-                    icon: Globe, 
-                    label: "Режим работы", 
+                  {
+                    icon: Globe,
+                    label: "Режим работы",
                     value: "Поддержка 24/7",
-                    href: null
-                  }
+                    href: null,
+                  },
                 ].map((item, index) => (
                   <motion.div
                     key={index}
@@ -89,7 +132,7 @@ export default function Contact() {
                     className="group"
                   >
                     {item.href ? (
-                      <a 
+                      <a
                         href={item.href}
                         target="_blank"
                         rel="noopener noreferrer"
@@ -115,62 +158,141 @@ export default function Contact() {
           >
             <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/10 to-emerald-500/10 rounded-xl blur-2xl" />
             <div className="relative bg-white/10 backdrop-blur-xl rounded-2xl sm:rounded-3xl border border-white/10 p-4 sm:p-8">
-              <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-                  {[
-                    { label: 'Имя', value: 'name', placeholder: 'Как к вам обращаться?' },
-                    { label: 'Контакт', value: 'contact', placeholder: 'Telegram/Email/Phone' },
-                    { label: 'Компания', value: 'company', placeholder: 'Если названия еще нет, не проблема', className: "col-span-2" }
-                  ].map((field) => (
-                    <div key={field.value} className={field.className}>
-                      <label className="block text-xs sm:text-sm font-medium text-indigo-200 mb-1 sm:mb-2">
-                        {field.label}
-                      </label>
-                      <input
-                        type="text"
-                        required
-                        value={formState[field.value as keyof typeof formState]}
-                        onChange={(e) => setFormState({ ...formState, [field.value]: e.target.value })}
-                        className="w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg bg-white/5 border border-white/10 
-                          text-white placeholder-white/50 text-sm sm:text-base
-                          focus:ring-2 focus:ring-indigo-500 focus:border-transparent 
-                          transition-all duration-200"
-                        placeholder={field.placeholder}
-                      />
+              <div className="min-h-[400px] flex items-center">
+                {isSuccess ? (
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="text-center py-8 w-full"
+                  >
+                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-emerald-500/10 mb-4">
+                      <CheckCircle2 className="w-8 h-8 text-emerald-500" />
                     </div>
-                  ))}
+                    <h3 className="text-2xl font-bold text-white mb-2">
+                      Сообщение отправлено!
+                    </h3>
+                    <p className="text-indigo-200">
+                      Мы свяжемся с вами в ближайшее время
+                    </p>
+                  </motion.div>
+                ) : (
+                  <form
+                    onSubmit={handleSubmit}
+                    className="space-y-4 sm:space-y-6 w-full"
+                  >
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+                      {[
+                        {
+                          label: "Имя",
+                          value: "name",
+                          placeholder: "Как к вам обращаться?",
+                        },
+                        {
+                          label: "Контакт",
+                          value: "contact",
+                          placeholder: "Telegram/Email/Phone",
+                        },
+                        {
+                          label: "Компания",
+                          value: "company",
+                          placeholder: "Если названия еще нет, не проблема",
+                          className: "sm:col-span-2",
+                        },
+                      ].map((field) => (
+                        <div key={field.value} className={field.className}>
+                          <label className="block text-xs sm:text-sm font-medium text-white/80 mb-1">
+                            {field.label}
+                          </label>
+                          <input
+                            type="text"
+                            required={field.value !== "company"}
+                            value={
+                              formState[field.value as keyof typeof formState]
+                            }
+                            onChange={(e) =>
+                              setFormState({
+                                ...formState,
+                                [field.value]: e.target.value,
+                              })
+                            }
+                            className="w-full px-3 sm:px-4 py-2 sm:py-2.5 bg-white/10 backdrop-blur-md border border-white/20 
+                              rounded-lg focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 
+                              text-white placeholder-white/50 text-sm sm:text-base shadow-lg 
+                              transition-all hover:bg-white/15"
+                            placeholder={field.placeholder}
+                          />
+                        </div>
+                      ))}
 
-                  <div className="sm:col-span-2">
-                    <label className="block text-xs sm:text-sm font-medium text-indigo-200 mb-1 sm:mb-2">
-                      Опишите вашу идею
-                    </label>
-                    <textarea
-                      required
-                      rows={4}
-                      value={formState.description}
-                      onChange={(e) => setFormState({ ...formState, description: e.target.value })}
-                      className="w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg bg-white/5 border border-white/10 
-                        text-white placeholder-white/50 text-sm sm:text-base
-                        focus:ring-2 focus:ring-indigo-500 focus:border-transparent 
-                        transition-all duration-200"
-                      placeholder="Расскажите в общих чертах, детали обсудим лично..."
-                    />
-                  </div>
-                </div>
+                      <div className="sm:col-span-2">
+                        <label className="block text-xs sm:text-sm font-medium text-white/80 mb-1">
+                          Опишите вашу идею
+                        </label>
+                        <textarea
+                          required
+                          rows={4}
+                          value={formState.description}
+                          onChange={(e) =>
+                            setFormState({
+                              ...formState,
+                              description: e.target.value,
+                            })
+                          }
+                          className="w-full px-3 sm:px-4 py-2 sm:py-2.5 bg-white/10 backdrop-blur-md border border-white/20 
+                            rounded-lg focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 
+                            text-white placeholder-white/50 text-sm sm:text-base shadow-lg 
+                            transition-all hover:bg-white/15"
+                          placeholder="Расскажите в общих чертах, детали обсудим лично..."
+                        />
+                      </div>
+                    </div>
 
-                <motion.button
-                  type="submit"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="w-full group relative mt-4 sm:mt-6"
-                >
-                  <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-emerald-500 rounded-lg blur-xl opacity-50 group-hover:opacity-75 transition-opacity" />
-                  <div className="relative flex items-center justify-center px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg bg-gradient-to-r from-indigo-500 to-emerald-500 text-white font-medium text-sm sm:text-base">
-                    <span>Отправить сообщение</span>
-                    <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5 group-hover:translate-x-1 transition-transform" />
-                  </div>
-                </motion.button>
-              </form>
+                    <motion.button
+                      type="submit"
+                      disabled={isSubmitting}
+                      whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
+                      whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
+                      className={`w-full group relative mt-4 sm:mt-6 ${
+                        isSubmitting ? "opacity-75 cursor-not-allowed" : ""
+                      }`}
+                    >
+                      <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-emerald-500 rounded-lg blur-xl opacity-50 group-hover:opacity-75 transition-opacity" />
+                      <div className="relative flex items-center justify-center px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg bg-gradient-to-r from-indigo-500 to-emerald-500 text-white font-medium text-sm sm:text-base">
+                        {isSubmitting ? (
+                          <div className="flex items-center">
+                            <svg
+                              className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                            >
+                              <circle
+                                className="opacity-25"
+                                cx="12"
+                                cy="12"
+                                r="10"
+                                stroke="currentColor"
+                                strokeWidth="4"
+                              />
+                              <path
+                                className="opacity-75"
+                                fill="currentColor"
+                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                              />
+                            </svg>
+                            <span>Отправка...</span>
+                          </div>
+                        ) : (
+                          <>
+                            <span>Отправить сообщение</span>
+                            <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5 group-hover:translate-x-1 transition-transform" />
+                          </>
+                        )}
+                      </div>
+                    </motion.button>
+                  </form>
+                )}
+              </div>
             </div>
           </motion.div>
         </div>

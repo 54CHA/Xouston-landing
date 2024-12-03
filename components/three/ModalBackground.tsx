@@ -1,8 +1,8 @@
 "use client";
 
-import { useRef } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
-import * as THREE from 'three';
+import { useRef } from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
+import * as THREE from "three";
 
 function AbstractShape() {
   const meshRef = useRef<THREE.Mesh | null>(null);
@@ -77,13 +77,14 @@ function AbstractShape() {
       materialRef.current.uniforms.time.value = state.clock.getElapsedTime();
     }
     if (meshRef.current) {
-      meshRef.current.rotation.x = Math.sin(state.clock.getElapsedTime() * 0.1) * 0.1;
+      meshRef.current.rotation.x =
+        Math.sin(state.clock.getElapsedTime() * 0.1) * 0.1;
       meshRef.current.rotation.y = state.clock.getElapsedTime() * 0.05;
     }
   });
 
   return (
-    <mesh ref={meshRef} position={[0, 0, -1.2]} scale={1}>
+    <mesh ref={meshRef} position={[0, 0, -4.5]} scale={1}>
       <torusKnotGeometry args={[0.7, 0.3, 128, 32]} />
       <shaderMaterial
         ref={materialRef}
@@ -100,10 +101,9 @@ export default function ModalBackground() {
   return (
     <div className="absolute inset-0">
       <Canvas camera={{ position: [0, 0, 0], fov: 45 }}>
-        <color attach="background" args={['#000000']} />
-        <fog attach="fog" args={['#000000', 3, 7]} />
+        <fog attach="fog" args={["#000000", 3, 7]} />
         <AbstractShape />
       </Canvas>
     </div>
   );
-} 
+}

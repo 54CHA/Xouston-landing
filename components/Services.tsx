@@ -1,82 +1,154 @@
 "use client";
 
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { Code2, Smartphone, Globe, Rocket, Database, Lock, ArrowRight } from 'lucide-react';
-import { useRef, useState } from 'react';
-import { IconBrandTelegram } from '@tabler/icons-react';
+import { motion, useScroll, useTransform } from "framer-motion";
+import {
+  Code2,
+  Smartphone,
+  Globe,
+  Rocket,
+  Database,
+  Lock,
+  ArrowRight,
+} from "lucide-react";
+import { useRef, useState } from "react";
+import { IconBrandTelegram } from "@tabler/icons-react";
+import {
+  SiReact,
+  SiNextdotjs,
+  SiTailwindcss,
+  SiTypescript,
+  SiNodedotjs,
+  SiPython,
+  SiKotlin,
+  SiSwift,
+  SiFlutter,
+  SiTelegram,
+  SiVk,
+} from "react-icons/si";
 
 const services = [
   {
     title: "Сайты",
     description: "Современные, быстрые и адаптивные сайты для вашего бизнеса",
     delay: 0.2,
-    icon: Globe
+    icon: Globe,
+    startingPrice: "от 40 000 ₽",
+    stack: [
+      { icon: SiNextdotjs, name: "Next.js" },
+      { icon: SiReact, name: "React" },
+      { icon: SiTailwindcss, name: "Tailwind" },
+    ],
   },
   {
     title: "Веб-приложения",
-    description: "Сложные веб-приложения с богатым функционалом и интерактивностью",
+    description:
+      "Сложные веб-приложения с богатым функционалом и интерактивностью",
     delay: 0.3,
-    icon: Code2
+    icon: Code2,
+    startingPrice: "от 70 000 ₽",
+    stack: [
+      { icon: SiReact, name: "React" },
+      { icon: SiTypescript, name: "TypeScript" },
+      { icon: SiNodedotjs, name: "Node.js" },
+    ],
   },
   {
     title: "Telegram/ВК сервисы",
     description: "Боты, мини-приложения и другие интеграции",
     delay: 0.4,
-    icon: IconBrandTelegram
+    icon: IconBrandTelegram,
+    startingPrice: "от 15 000 ₽",
+    stack: [
+      { icon: SiTelegram, name: "Telegram" },
+      { icon: SiVk, name: "VK" },
+      { icon: SiPython, name: "Python" },
+    ],
   },
   {
     title: "Мобильные приложения",
     description: "Нативные приложения для iOS и Android с современным дизайном",
     delay: 0.5,
-    icon: Smartphone
+    icon: Smartphone,
+    startingPrice: "от 80 000 ₽",
+    stack: [
+      { icon: SiKotlin, name: "Kotlin" },
+      { icon: SiSwift, name: "Swift" },
+      { icon: SiFlutter, name: "Flutter" },
+    ],
   },
   {
     title: "Особые проекты",
-    description: "Нестандартные решения и индивидуальные разработки под ваши уникальные задачи",
+    description:
+      "Нестандартные решения и индивидуальные разработки под ваши уникальные задачи",
     delay: 0.6,
-    icon: Rocket
-  }
+    icon: Rocket,
+    startingPrice: "по договоренности",
+  },
 ];
 
 export default function Services() {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start end", "end start"]
+    offset: ["start end", "end start"],
   });
 
   const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
 
+  const [rotations, setRotations] = useState<{
+    [key: string]: { x: number; y: number };
+  }>({});
+
   const handleMouseMove = (
     e: React.MouseEvent<HTMLDivElement>,
-    cardRef: React.RefObject<HTMLDivElement>
+    cardRef: React.RefObject<HTMLDivElement>,
+    title: string
   ) => {
     if (!cardRef.current) return;
 
     const card = cardRef.current;
     const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
 
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-    
-    const rotateX = (y - centerY) / 20;
-    const rotateY = -(x - centerX) / 20;
+    // Calculate relative position (0 to 1)
+    const relativeX = (e.clientX - rect.left) / rect.width;
+    const relativeY = (e.clientY - rect.top) / rect.height;
 
-    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    // Convert to degrees (-20 to 20 degrees)
+    const rotateY = (relativeX - 0.5) * 20;
+    const rotateX = -(relativeY - 0.5) * 20;
+
+    setRotations((prev) => ({
+      ...prev,
+      [title]: { x: rotateX, y: rotateY },
+    }));
   };
 
-  const handleMouseLeave = (cardRef: React.RefObject<HTMLDivElement>) => {
-    if (!cardRef.current) return;
-    cardRef.current.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
+  const handleMouseLeave = (title: string) => {
+    setRotations((prev) => ({
+      ...prev,
+      [title]: { x: 0, y: 0 },
+    }));
+  };
+
+  const [flippedCards, setFlippedCards] = useState<{ [key: string]: boolean }>(
+    {}
+  );
+
+  const toggleFlip = (title: string) => {
+    setFlippedCards((prev) => ({
+      ...prev,
+      [title]: !prev[title],
+    }));
   };
 
   return (
     <section id="services" className="relative py-32 overflow-hidden">
       <div className="" />
-      
-      <div ref={containerRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+
+      <div
+        ref={containerRef}
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative"
+      >
         {/* Header Section */}
         <motion.div style={{ y }} className="text-center mb-24">
           <motion.div
@@ -120,43 +192,106 @@ export default function Services() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: service.delay }}
-                className={`group relative ${
-                  index === 4 ? 'md:col-span-2 lg:col-span-1 lg:col-start-2' : ''
+                className={`group relative min-h-[250px] ${
+                  index === 4
+                    ? "md:col-span-2 lg:col-span-1 lg:col-start-2"
+                    : ""
                 }`}
               >
                 <div
                   ref={cardRef}
-                  onMouseMove={(e) => handleMouseMove(e, cardRef)}
-                  onMouseLeave={() => handleMouseLeave(cardRef)}
-                  className="relative h-full bg-white/5 backdrop-blur-lg border border-white/10 hover:bg-white/10 transition-all duration-300 p-8 rounded-2xl overflow-hidden"
-                  style={{ transition: 'transform 0.1s ease-out' }}
+                  className="relative w-full h-full"
+                  style={{
+                    perspective: "1000px",
+                    transform: `perspective(1000px) rotateY(${
+                      rotations[service.title]?.y || 0
+                    }deg) rotateX(${rotations[service.title]?.x || 0}deg)`,
+                    transition: "transform 0.1s ease-out",
+                  }}
+                  onClick={() => toggleFlip(service.title)}
+                  onMouseMove={(e) =>
+                    handleMouseMove(e, cardRef, service.title)
+                  }
+                  onMouseLeave={() => handleMouseLeave(service.title)}
                 >
-                  {/* Icon - Updated styles */}
-                  <div className="absolute -top-4 -right-4 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3">
-                    <service.icon className="w-24 h-24 text-white/[0.03] group-hover:text-indigo-300/[0.3] transition-colors duration-300" />
-                  </div>
-
-                  {/* Number indicator */}
-                  <div className="relative z-10">
-                    <div className="relative inline-flex mb-6">
-                      <span className="px-3 py-1 text-sm text-white/90 bg-white/5 rounded-full border border-white/10">
-                        {String(index + 1).padStart(2, '0')}
-                      </span>
+                  {/* Front of card */}
+                  <div
+                    data-title={service.title}
+                    className="absolute w-full h-full bg-white/5 backdrop-blur-lg border border-white/10 hover:bg-white/10 transition-all duration-300 p-8 rounded-2xl overflow-hidden"
+                    style={{
+                      backfaceVisibility: "hidden",
+                      transform: flippedCards[service.title]
+                        ? "rotateY(180deg)"
+                        : "rotateY(0deg)",
+                      transition: "transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)",
+                      transformStyle: "preserve-3d",
+                    }}
+                  >
+                    {/* Icon - Updated styles */}
+                    <div className="absolute -top-4 -right-4 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3">
+                      <service.icon className="w-24 h-24 text-white/[0.03] group-hover:text-indigo-300/[0.3] transition-colors duration-300" />
                     </div>
 
-                    <h3 className="text-2xl font-medium mb-3 text-white group-hover:text-indigo-300 transition-colors">
-                      {service.title}
-                    </h3>
+                    {/* Number indicator */}
+                    <div className="relative z-10">
+                      <div className="relative inline-flex mb-6">
+                        <span className="px-3 py-1 text-sm text-white/90 bg-white/5 rounded-full border border-white/10">
+                          {String(index + 1).padStart(2, "0")}
+                        </span>
+                      </div>
 
-                    <p className="text-neutral-400 text-sm leading-relaxed group-hover:text-neutral-300 transition-colors pb-8">
-                      {service.description}
-                    </p>
+                      <h3 className="text-2xl font-medium mb-3 text-white group-hover:text-indigo-300 transition-colors">
+                        {service.title}
+                      </h3>
 
-                    {/* Arrow indicator */}
-                    {/* <div className="mt-6 flex items-center text-white/60 group-hover:text-white transition-colors">
-                      <span className="text-sm">Learn more</span>
-                      <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                    </div> */}
+                      <p className="text-neutral-400 text-sm leading-relaxed group-hover:text-neutral-300 transition-colors pb-8">
+                        {service.description}
+                      </p>
+
+                      {/* Arrow indicator */}
+                      {/* <div className="mt-6 flex items-center text-white/60 group-hover:text-white transition-colors">
+                        <span className="text-sm">Learn more</span>
+                        <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                      </div> */}
+                    </div>
+                  </div>
+
+                  {/* Back of card */}
+                  <div
+                    className="absolute w-full h-full bg-white/5 backdrop-blur-lg border border-white/10 hover:bg-white/10 transition-all duration-300 p-8 rounded-2xl overflow-hidden"
+                    style={{
+                      backfaceVisibility: "hidden",
+                      transform: flippedCards[service.title]
+                        ? "rotateY(0deg)"
+                        : "rotateY(-180deg)",
+                      transition: "transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)",
+                      transformStyle: "preserve-3d",
+                    }}
+                  >
+                    <div className="flex flex-col justify-center items-center h-full text-center">
+                      <h4 className="text-xl font-medium mb-4 text-white group-hover:text-indigo-300 transition-colors">
+                        &quot;{service.title}&quot;
+                      </h4>
+                      <div className="text-3xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-cyan-400 to-emerald-400">
+                        {service.startingPrice}
+                      </div>
+
+                      {/* Stack icons */}
+                      <div className="flex gap-4 mb-6">
+                        {service.stack?.map((tech) => (
+                          <div key={tech.name} className="group/icon relative">
+                            <tech.icon className="w-6 h-6 text-white/50 hover:text-white/90 transition-colors" />
+                            <span className="absolute -bottom-6 left-1/2 -translate-x-1/2 text-xs text-white/70 opacity-0 group-hover/icon:opacity-100 transition-opacity whitespace-nowrap">
+                              {tech.name}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+
+                      <p className="text-neutral-400 text-sm group-hover:text-neutral-300 transition-colors">
+                        Нажмите, чтобы вернуться
+                      </p>
+                    </div>
                   </div>
                 </div>
               </motion.div>

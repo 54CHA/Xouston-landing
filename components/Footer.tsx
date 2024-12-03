@@ -1,9 +1,25 @@
 "use client";
 
-import { motion } from 'framer-motion';
-import { Mail, ArrowUpRight, MessageSquare, Globe } from 'lucide-react';
-import Link from 'next/link';
-import { SiReact, SiTypescript, SiPython, SiSwift, SiDocker, SiGo, SiKotlin } from 'react-icons/si';
+import { motion } from "framer-motion";
+import { Mail, ArrowUpRight, MessageSquare, Globe } from "lucide-react";
+import Link from "next/link";
+import {
+  SiReact,
+  SiTypescript,
+  SiPython,
+  SiSwift,
+  SiDocker,
+  SiGo,
+  SiKotlin,
+  SiNodedotjs,
+  SiCplusplus,
+  SiCsharp,
+  SiRust,
+  SiOpenjdk,
+  SiDart,
+  SiNextdotjs,
+  SiVuedotjs,
+} from "react-icons/si";
 
 const footerLinks = [
   {
@@ -13,27 +29,33 @@ const footerLinks = [
       { name: "Услуги", href: "#services" },
       { name: "Процесс", href: "#process" },
       { name: "Команда", href: "#team" },
-      { name: "Контакты", href: "#contact" }
-    ]
+      { name: "Контакты", href: "#contact" },
+    ],
   },
   {
     title: "Связаться",
     links: [
       { name: "Telegram", href: "https://t.me/sachakhv", icon: MessageSquare },
       { name: "Email", href: "mailto:shsha.khv@gmail.com", icon: Mail },
-      { name: "24/7 Поддержка", href: "#", icon: Globe }
-    ]
-  }
+    ],
+  },
 ];
 
 const technologies = [
+  { icon: SiGo, name: "Go" },
+  { icon: SiDart, name: "Dart" },
   { icon: SiReact, name: "React" },
   { icon: SiTypescript, name: "TypeScript" },
+  { icon: SiCplusplus, name: "C++" },
   { icon: SiKotlin, name: "Kotlin" },
+  { icon: SiCsharp, name: "C#" },
   { icon: SiSwift, name: "Swift" },
-  { icon: SiGo, name: "Go" },
+  { icon: SiRust, name: "Rust" },
+  { icon: SiOpenjdk, name: "Java" },
+  { icon: SiNodedotjs, name: "Node.js" },
   { icon: SiPython, name: "Python" },
-  { icon: SiDocker, name: "Docker" }
+  { icon: SiVuedotjs, name: "Vue" },
+  { icon: SiNextdotjs, name: "Next.js" },
 ];
 
 export default function Footer() {
@@ -57,7 +79,7 @@ export default function Footer() {
                 <div className="relative">
                   {/* Animated glow effect */}
                   <div className="absolute -inset-2 bg-gradient-to-r from-indigo-500 via-purple-500 to-emerald-500 rounded-full blur-xl opacity-20 group-hover:opacity-75 transition duration-500 group-hover:duration-200 animate-tilt" />
-                  
+
                   {/* Logo symbol */}
                   <div className="relative flex items-center justify-center h-10 w-10 rounded-xl bg-black border border-white/10 overflow-hidden">
                     <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/20 to-emerald-500/20" />
@@ -82,17 +104,28 @@ export default function Footer() {
             </Link>
 
             <p className="text-gray-400 max-w-sm">
-              Создаем исключительный цифровой опыт через инновационные веб и мобильные решения.
+              Создаем исключительный цифровой опыт через инновационные веб и
+              мобильные решения.
             </p>
-            
+
             {/* Technologies */}
-            <div className="pt-4">
-              <h4 className="text-sm font-semibold text-white mb-4">Технологии</h4>
-              <div className="flex flex-wrap gap-4">
-                {technologies.map((tech, index) => (
-                  <div key={tech.name} className="group cursor-pointer relative">
-                    <tech.icon className="w-5 h-5 text-gray-400 hover:text-white transition-colors" />
-                    <span className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 text-xs text-white/70 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+            <div className="pt-4 max-w-[400px] hidden sm:block">
+              <h4 className="text-sm font-semibold text-white mb-4">
+                Технологии
+              </h4>
+              <div className="grid grid-cols-5 sm:grid-cols-7 md:grid-cols-8 lg:grid-cols-10 gap-4 sm:gap-2">
+                {technologies.map((tech) => (
+                  <div
+                    key={tech.name}
+                    className="group cursor-pointer relative flex items-center justify-center"
+                  >
+                    <tech.icon className="w-8 h-8 sm:w-6 sm:h-6 text-gray-400 hover:text-white transition-colors" />
+                    <span
+                      className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 
+                        text-[10px] sm:text-xs text-white/70 opacity-0 
+                        group-hover:opacity-100 transition-opacity whitespace-nowrap
+                        pointer-events-none z-10"
+                    >
                       {tech.name}
                     </span>
                   </div>
@@ -106,7 +139,9 @@ export default function Footer() {
             <div className="grid grid-cols-2 sm:grid-cols-2 gap-8 sm:gap-12">
               {footerLinks.map((column) => (
                 <div key={column.title}>
-                  <h3 className="text-white font-semibold mb-4">{column.title}</h3>
+                  <h3 className="text-white font-semibold mb-4">
+                    {column.title}
+                  </h3>
                   <ul className="space-y-3">
                     {column.links.map((link) => (
                       <li key={link.name}>

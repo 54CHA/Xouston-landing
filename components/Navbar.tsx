@@ -1,42 +1,52 @@
 "use client";
 
-import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, ChevronDown, ExternalLink, Sparkles, ArrowRight } from 'lucide-react';
-import { useState, useEffect } from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
-import { useModal } from '@/contexts/ModalContext';
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  Menu,
+  X,
+  ChevronDown,
+  ExternalLink,
+  Sparkles,
+  ArrowRight,
+} from "lucide-react";
+import { useState, useEffect } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { useModal } from "@/contexts/ModalContext";
 
 type NavItem = {
   name: string;
   href: string;
-  children?: { name: string; href: string; description: string; }[];
+  children?: { name: string; href: string; description: string }[];
 };
 
 const navigation: NavItem[] = [
-  { name: 'Услуги', href: '#services' },
-  { name: 'Процесс', href: '#process' },
-  { name: 'Команда', href: '#team' },
-  { name: 'Контакты', href: '#contact' },
+  { name: "Услуги", href: "#services" },
+  { name: "Процесс", href: "#process" },
+  { name: "Команда", href: "#team" },
+  { name: "Контакты", href: "#contact" },
 ];
 
-const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+const scrollToSection = (
+  e: React.MouseEvent<HTMLAnchorElement>,
+  href: string
+) => {
   e.preventDefault();
-  
+
   // Try multiple times with increasing delays
   const tryScroll = (attempts = 0) => {
     const element = document.querySelector(href);
     if (element) {
-      element.scrollIntoView({ 
-        behavior: 'smooth',
-        block: 'start'
+      element.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
       });
     } else if (attempts < 3) {
       // Try again after a delay, with increasing timeouts
       setTimeout(() => tryScroll(attempts + 1), 100 * (attempts + 1));
     }
   };
-  
+
   tryScroll();
 };
 
@@ -50,8 +60,8 @@ export default function Navbar() {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
@@ -60,16 +70,18 @@ export default function Navbar() {
       animate={{ y: 0 }}
       className="fixed top-10 left-0 right-0 z-50 px-4 sm:px-6 lg:px-8"
     >
-      <nav className={`mx-auto transition-all duration-300 relative
-        ${scrolled ? 'max-w-5xl py-2' : 'max-w-7xl py-4'}`}
+      <nav
+        className={`mx-auto transition-all duration-300 relative
+        ${scrolled ? "max-w-5xl py-2" : "max-w-7xl py-4"}`}
       >
         {/* Enhanced Glassmorphic Background with Gradient Border */}
         <div className="absolute inset-0 bg-black/40 backdrop-blur-lg rounded-full" />
-        <div className={`absolute inset-x-0 -bottom-px h-[1px] bg-gradient-to-r 
+        <div
+          className={`absolute inset-x-0 -bottom-px h-[1px] bg-gradient-to-r 
           from-transparent via-white/20 to-transparent transition-opacity duration-300 
-          ${scrolled ? 'opacity-100' : 'opacity-0'}`} 
+          ${scrolled ? "opacity-100" : "opacity-0"}`}
         />
-        
+
         <div className="relative mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
             {/* Modern Logo */}
@@ -82,7 +94,7 @@ export default function Navbar() {
               <div className="relative">
                 {/* Animated glow effect */}
                 <div className="absolute -inset-2 bg-gradient-to-r from-indigo-500 via-purple-500 to-emerald-500 rounded-full blur-xl opacity-20 group-hover:opacity-75 transition duration-500 group-hover:duration-200 animate-tilt" />
-                
+
                 {/* Logo symbol */}
                 <div className="relative flex items-center justify-center h-10 w-10 rounded-xl bg-black border border-white/10 overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/20 to-emerald-500/20" />
@@ -93,13 +105,13 @@ export default function Navbar() {
                   </div>
                 </div>
               </div>
-              
+
               {/* Logo text */}
               <div className="flex flex-col">
                 <span className="text-2xl font-semibold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-purple-400 to-emerald-400">
                   Xouston
                 </span>
-                <span className="text-xs text-white/50 tracking-widest uppercase">
+                <span className=" text-xs text-white/50 tracking-widest uppercase">
                   Digital Lab
                 </span>
               </div>
@@ -118,7 +130,7 @@ export default function Navbar() {
                         <span>{item.name}</span>
                         <ChevronDown className="h-4 w-4 group-hover:rotate-180 transition-transform duration-300" />
                       </button>
-                      
+
                       <AnimatePresence>
                         {activeDropdown === item.name && (
                           <motion.div
@@ -135,8 +147,12 @@ export default function Navbar() {
                                 className="group flex flex-col rounded-xl px-4 py-3 hover:bg-white/10 transition-colors"
                                 whileHover={{ x: 4 }}
                               >
-                                <span className="text-sm font-medium text-white">{child.name}</span>
-                                <span className="text-xs text-white/50 group-hover:text-white/70 transition-colors">{child.description}</span>
+                                <span className="text-sm font-medium text-white">
+                                  {child.name}
+                                </span>
+                                <span className="text-xs text-white/50 group-hover:text-white/70 transition-colors">
+                                  {child.description}
+                                </span>
                               </motion.a>
                             ))}
                           </motion.div>
@@ -158,7 +174,7 @@ export default function Navbar() {
                   )}
                 </div>
               ))}
-              
+
               {/* Modern Glowing CTA Button */}
               <motion.button
                 onClick={openRequestModal}
@@ -173,10 +189,12 @@ export default function Navbar() {
                 <div className="relative flex items-center px-5 py-2.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm">
                   {/* Gradient overlay */}
                   <div className="absolute inset-0 rounded-full bg-gradient-to-r from-indigo-500/80 to-emerald-500/80 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  
+
                   {/* Button content */}
                   <div className="relative flex items-center space-x-2">
-                    <span className="text-sm font-medium text-white">Связаться</span>
+                    <span className="text-sm font-medium text-white">
+                      Связаться
+                    </span>
                     <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-0.5 transition-transform duration-500" />
                   </div>
                 </div>
@@ -189,8 +207,12 @@ export default function Navbar() {
               onClick={() => setIsOpen(!isOpen)}
               className="md:hidden rounded-lg bg-white/5 p-2 text-white hover:bg-white/10 transition-colors"
             >
-              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </motion.button>  
+              {isOpen ? (
+                <X className="h-6 w-6" />
+              ) : (
+                <Menu className="h-6 w-6" />
+              )}
+            </motion.button>
           </div>
         </div>
 
@@ -242,15 +264,3 @@ export default function Navbar() {
     </motion.header>
   );
 }
-
-{/* Add this to your CSS */}
-<style jsx global>{`
-  @keyframes tilt {
-    0%, 100% { transform: rotate(0deg); }
-    25% { transform: rotate(1deg); }
-    75% { transform: rotate(-1deg); }
-  }
-  .animate-tilt {
-    animation: tilt 10s infinite linear;
-  }
-`}</style>

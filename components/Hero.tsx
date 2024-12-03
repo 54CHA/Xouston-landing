@@ -1,127 +1,160 @@
 "use client";
 
-import { motion } from 'framer-motion';
-import { ArrowRight, Code2, Smartphone, Globe } from 'lucide-react';
-import Scene from './three/Scene';
-import { useModal } from '@/contexts/ModalContext';
+import { motion, useScroll, useTransform } from "framer-motion";
+import { ArrowRight } from "lucide-react";
+import Scene from "./three/Scene";
+import { useModal } from "@/contexts/ModalContext";
+
+const scrollToSection = (
+  e: React.MouseEvent<HTMLAnchorElement>,
+  href: string
+) => {
+  e.preventDefault();
+
+  // Try multiple times with increasing delays
+  const tryScroll = (attempts = 0) => {
+    const element = document.querySelector(href);
+    if (element) {
+      element.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    } else if (attempts < 3) {
+      // Try again after a delay, with increasing timeouts
+      setTimeout(() => tryScroll(attempts + 1), 100 * (attempts + 1));
+    }
+  };
+
+  tryScroll();
+};
 
 export default function Hero() {
   const { openRequestModal } = useModal();
+  const { scrollY } = useScroll();
+  const y = useTransform(scrollY, [0, 300], [0, -50]);
+  const opacity = useTransform(scrollY, [0, 300], [1, 0]);
+
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.3,
+      },
+    },
+  };
+
+  const item = {
+    hidden: { opacity: 0, y: 20 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 10,
+      },
+    },
+  };
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
-      <div className="absolute inset-0" />
-      
       <Scene />
-  
-    
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 relative z-10 mt-20 lg:mt-0">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <div className="sticky top-24">
-              <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6">
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 to-emerald-500">
-                  Создаем цифровое
-                </span>
-                <br />
-                <span className="text-white">превосходство</span>
-              </h2>
+      <motion.div
+        style={{ y, opacity }}
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 relative z-10"
+      >
+        <motion.div
+          variants={container}
+          initial="hidden"
+          animate="show"
+          className="flex flex-col items-center text-center max-w-4xl mx-auto"
+        >
+          <motion.div variants={item} className="relative mb-6">
+            <div className="absolute -inset-x-4 -inset-y-2 bg-gradient-to-r from-indigo-500/20 from-10% via-purple-500/10 via-40% to-emerald-500/20 to-90% blur-3xl animate-gradient" />
 
-              <p className="text-xl text-indigo-200 mb-8">
-                Мы создаем уникальные мобильные и веб решения, которые способствуют росту прогрессивного бизнеса
-              </p>
-
-              <div className="flex flex-col sm:flex-row gap-4">
-                <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  onClick={openRequestModal}
-                  className="group relative"
-                >
-                  <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-emerald-500 rounded-xl blur-xl opacity-50 group-hover:opacity-75 transition-opacity" />
-                  <div className="relative flex items-center justify-center px-6 py-4 rounded-xl bg-gradient-to-r from-indigo-500 to-emerald-500 text-white font-medium">
-                    <span>Оставить заявку</span>
-                    <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                  </div>
-                </motion.button>
-
-                <motion.a
-                  href="#services"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="group relative"
-                >
-                  <div className="relative flex items-center justify-center px-6 py-4 rounded-xl bg-white/5 backdrop-blur-lg border border-white/10 text-white font-medium hover:bg-white/10 transition-colors">
-                    <span>Изучить услуги</span>
-                    <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                  </div>
-                </motion.a>
-              </div>
-            </div>
+            <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold relative">
+              <motion.span
+                className="inline-block bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 from-10% via-purple-500/80 via-40% to-emerald-500 to-90% animate-gradient-slow"
+                variants={item}
+              >
+                Создаем цифровое
+              </motion.span>
+              <br />
+              <motion.span className="inline-block text-white" variants={item}>
+                превосходство
+              </motion.span>
+            </h1>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+          <motion.p
+            variants={item}
+            className="text-xl md:text-2xl text-indigo-200 mb-12 max-w-3xl"
           >
-            <div className="relative space-y-6">
-              {[
-                {
-                  icon: Code2,
-                  title: "Веб-разработка",
-                  description: "Современные, адаптивные веб-сайты, созданные с использованием передовых технологий",
-                  gradient: "from-indigo-500 to-blue-500"
-                },
-                {
-                  icon: Smartphone,
-                  title: "Мобильная разработка",
-                  description: "Нативные и кроссплатформенные мобильные приложения",
-                  gradient: "from-emerald-500 to-cyan-500"
-                },
-                {
-                  icon: Globe,
-                  title: "Кастомные решения",
-                  description: "Разработка уникальных и инновационных продуктов для вашего бизнеса",
-                  gradient: "from-blue-500 to-violet-500"
-                }
-              ].map((item, index) => (
+            Мы создаем уникальные мобильные и веб решения, которые способствуют
+            росту прогрессивного бизнеса
+          </motion.p>
+
+          <motion.div
+            variants={item}
+            className="flex flex-col sm:flex-row gap-4 justify-center  mt-5"
+          >
+            <motion.button
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              onClick={openRequestModal}
+              className="group relative"
+              variants={item}
+            >
+              <div className="absolute -inset-1 bg-gradient-to-r from-indigo-500 to-emerald-500 rounded-xl blur-lg opacity-50 group-hover:opacity-75 transition-all duration-500 group-hover:duration-200 animate-tilt" />
+              <div className="relative flex items-center justify-center px-8 py-4 rounded-xl bg-gradient-to-r from-indigo-500 to-emerald-500 text-white font-medium">
+                <motion.span
+                  initial={{ x: -5, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{ delay: 1 }}
+                >
+                  Оставить заявку
+                </motion.span>
                 <motion.div
-                  key={item.title}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="group cursor-pointer"
+                  initial={{ x: -10, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{ delay: 1.2 }}
                 >
-                  <a href="#services" className="block">
-                    <div className="relative flex items-center space-x-6 p-4 rounded-2xl bg-white/5 backdrop-blur-lg border border-white/10 hover:bg-white/10 transition-all duration-300 overflow-hidden">
-                      <div className="absolute inset-0 opacity-0 group-hover:opacity-100">
-                        <div className="absolute inset-0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-                      </div>
-                      
-                      <div className="flex-shrink-0">
-                        <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500/10 to-emerald-500/10 border border-white/10">
-                          <item.icon className="h-6 w-6 text-white" />
-                        </div>
-                      </div>
-                      <div>
-                        <h3 className="text-lg font-semibold text-white">{item.title}</h3>
-                        <p className="text-indigo-200">{item.description}</p>
-                      </div>
-                      <ArrowRight className="absolute right-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300 text-white" />
-                    </div>
-                  </a>
+                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                 </motion.div>
-              ))}
-            </div>
+              </div>
+            </motion.button>
+
+            <motion.a
+              href="#services"
+              onClick={(e) => scrollToSection(e, "#services")}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="group relative"
+              variants={item}
+            >
+              <div className="relative flex items-center justify-center px-8 py-4 rounded-xl bg-white/5 backdrop-blur-lg border border-white/10 text-white font-medium hover:bg-white/10 transition-all duration-300">
+                <motion.span
+                  initial={{ x: -5, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{ delay: 1.1 }}
+                >
+                  Изучить услуги
+                </motion.span>
+                <motion.div
+                  initial={{ x: -10, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{ delay: 1.3 }}
+                >
+                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                </motion.div>
+              </div>
+            </motion.a>
           </motion.div>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 }
