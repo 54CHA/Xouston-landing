@@ -5,29 +5,6 @@ import { ArrowRight } from "lucide-react";
 import Scene from "./three/Scene";
 import { useModal } from "@/contexts/ModalContext";
 
-const scrollToSection = (
-  e: React.MouseEvent<HTMLAnchorElement>,
-  href: string
-) => {
-  e.preventDefault();
-
-  // Try multiple times with increasing delays
-  const tryScroll = (attempts = 0) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    } else if (attempts < 3) {
-      // Try again after a delay, with increasing timeouts
-      setTimeout(() => tryScroll(attempts + 1), 100 * (attempts + 1));
-    }
-  };
-
-  tryScroll();
-};
-
 export default function Hero() {
   const { openRequestModal } = useModal();
   const { scrollY } = useScroll();
@@ -129,7 +106,6 @@ export default function Hero() {
 
             <motion.a
               href="#services"
-              onClick={(e) => scrollToSection(e, "#services")}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               className="group relative"

@@ -2,7 +2,7 @@
 
 import { Canvas } from "@react-three/fiber";
 import { Suspense } from "react";
-import { Environment, PerspectiveCamera } from "@react-three/drei";
+import { PerspectiveCamera } from "@react-three/drei";
 import WaveField from "./WaveField";
 
 export default function Scene() {
@@ -13,11 +13,20 @@ export default function Scene() {
         <PerspectiveCamera makeDefault position={[0, 0, 15]} fov={45} />
         <Suspense fallback={null}>
           <WaveField />
-          <Environment preset="night" />
           <ambientLight intensity={0.5} />
           <directionalLight
             position={[5, 5, 5]}
             intensity={3}
+            color="#ffffff"
+          />
+          <directionalLight
+            position={[-5, -5, -5]}
+            intensity={0.5}
+            color="#4f46e5"
+          />
+          <hemisphereLight
+            intensity={0.2}
+            groundColor="#000000"
             color="#ffffff"
           />
         </Suspense>
