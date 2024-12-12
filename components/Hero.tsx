@@ -49,8 +49,8 @@ export default function Hero() {
           animate="show"
           className="flex flex-col items-center text-center max-w-4xl mx-auto"
         >
-          <motion.div variants={item} className="relative mb-4 sm:mb-6">
-            <div className="absolute -inset-x-4 -inset-y-2 bg-gradient-to-r from-indigo-500/20 via-purple-500/10 to-emerald-500/20 blur-3xl animate-text-gradient" />
+          <motion.div variants={item} className="relative mb-4 sm:mb-6 bg-transparent">
+            {/*<div className="absolute -inset-x-4 -inset-y-2 bg-gradient-to-r from-indigo-500/20 via-purple-500/10 to-emerald-500/20 blur-3xl" />*/}
 
             <h1 className="text-[2.5rem] leading-tight sm:text-6xl font-bold relative">
               <motion.div
