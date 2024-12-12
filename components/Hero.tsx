@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Scene from "./three/Scene";
 import { useModal } from "@/contexts/ModalContext";
+import styles from './styles.module.css'
 
 export default function Hero() {
   const { openRequestModal } = useModal();
@@ -50,7 +51,7 @@ export default function Hero() {
           className="flex flex-col items-center text-center max-w-4xl mx-auto"
         >
           <motion.div variants={item} className="relative mb-4 sm:mb-6 bg-transparent">
-            {/*<div className="absolute -inset-x-4 -inset-y-2 bg-gradient-to-r from-indigo-500/20 via-purple-500/10 to-emerald-500/20 blur-3xl" />*/}
+            <div className={styles.titleGradient}/>
 
             <h1 className="text-[2.5rem] leading-tight sm:text-6xl font-bold relative">
               <motion.div
