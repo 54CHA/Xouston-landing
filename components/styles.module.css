@@ -1,5 +1,5 @@
 .titleGradient {
-    filter: blur(48px);
+    filter: blur(64px);
     @apply
     absolute
     -inset-x-4
