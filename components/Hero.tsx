@@ -57,7 +57,7 @@ export default function Hero() {
                 className="inline-block"
                 variants={item}
               >
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 from-10% via-purple-500/80 via-40% to-emerald-500 to-90% animate-gradient-slow">
+                <span className="bg-clip-text [-webkit-background-clip:text] text-transparent bg-gradient-to-r from-indigo-500 from-10% via-purple-500/80 via-40% to-emerald-500 to-90% animate-gradient-slow">
                   Создаем цифровое
                 </span>
               </motion.div>
