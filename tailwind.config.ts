@@ -53,6 +53,7 @@ const config: Config = {
       },
       animation: {
         blob: "blob 7s infinite",
+        'text-gradient': 'text-gradient 6s ease infinite',
       },
       keyframes: {
         blob: {
@@ -67,6 +68,20 @@ const config: Config = {
           },
           "100%": {
             transform: "translate(0px, 0px) scale(1)",
+          },
+        },
+        'text-gradient': {
+          '0%': {
+            'background-position': '0% 50%',
+            'background-size': '200% 200%',
+          },
+          '50%': {
+            'background-position': '100% 50%',
+            'background-size': '200% 200%',
+          },
+          '100%': {
+            'background-position': '0% 50%',
+            'background-size': '200% 200%',
           },
         },
       },

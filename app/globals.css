@@ -158,25 +158,23 @@
   animation-delay: 4s;
 }
 
-@keyframes gradient {
+@keyframes text-gradient {
   0% {
     background-position: 0% 50%;
+    background-size: 200% 200%;
   }
   50% {
     background-position: 100% 50%;
+    background-size: 200% 200%;
   }
   100% {
     background-position: 0% 50%;
+    background-size: 200% 200%;
   }
 }
 
-.animate-gradient {
-  animation: gradient 4s ease infinite;
-  background-size: 200% 200%;
-}
-
-.animate-gradient-slow {
-  animation: gradient 4s ease infinite;
+.animate-text-gradient {
+  animation: text-gradient 6s ease infinite;
   background-size: 200% 200%;
 }
 
