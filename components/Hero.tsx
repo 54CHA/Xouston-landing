@@ -50,15 +50,17 @@ export default function Hero() {
           className="flex flex-col items-center text-center max-w-4xl mx-auto"
         >
           <motion.div variants={item} className="relative mb-6">
-            <div className="absolute -inset-x-4 -inset-y-2 bg-gradient-to-r from-indigo-500/20 from-10% via-purple-500/10 via-40% to-emerald-500/20 to-90% blur-3xl animate-gradient" />
+            <div className="absolute -inset-x-4 -inset-y-2 bg-gradient-to-r from-indigo-500/20 from-10% via-purple-500/10 via-40% to-emerald-500/20 to-90% blur-3xl animate-gradient-slow" />
 
             <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold relative">
-              <motion.span
-                className="inline-block bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 from-10% via-purple-500/80 via-40% to-emerald-500 to-90% animate-gradient-slow"
+              <motion.div
+                className="inline-block"
                 variants={item}
               >
-                Создаем цифровое
-              </motion.span>
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 from-10% via-purple-500/80 via-40% to-emerald-500 to-90% animate-gradient-slow">
+                  Создаем цифровое
+                </span>
+              </motion.div>
               <br />
               <motion.span className="inline-block text-white" variants={item}>
                 превосходство

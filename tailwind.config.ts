@@ -76,6 +76,9 @@ const config: Config = {
       backgroundSize: {
         'grid': '40px 40px',
       },
+      fontFamily: {
+        sans: ['Onest', 'sans-serif'],
+      },
     },
   },
   plugins: [],
