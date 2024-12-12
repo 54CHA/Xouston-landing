@@ -53,15 +53,15 @@ const services = [
     ],
   },
   {
-    title: "Telegram/ВК сервисы",
-    description: "Боты, мини-приложения и другие интеграции",
+    title: "Telegram/ВК Mini Apps",
+    description: "Создаем мини-приложения для Telegram с богатым функционалом и интеграцией с ботами",
     delay: 0.4,
     icon: IconBrandTelegram,
-    startingPrice: "от 15 000 ₽",
+    startingPrice: "от 30 000 ₽",
     stack: [
       { icon: SiTelegram, name: "Telegram" },
-      { icon: SiVk, name: "VK" },
-      { icon: SiPython, name: "Python" },
+      { icon: SiReact, name: "React" },
+      { icon: SiTypescript, name: "TypeScript" },
     ],
   },
   {

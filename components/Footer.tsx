@@ -63,24 +63,17 @@ export default function Footer() {
 
   return (
     <footer className="relative overflow-hidden bg-black/60 backdrop-blur-sm">
-      {/* Background Elements */}
       <div className="absolute inset-0 bg-gradient-to-tr from-indigo-900/20 via-transparent to-emerald-900/20" />
       <div className="absolute inset-0 bg-grid-white/[0.02]" />
       <div className="absolute h-96 w-96 -bottom-48 -right-48 rounded-full bg-indigo-500/20 blur-3xl animate-blob" />
       <div className="absolute h-96 w-96 -bottom-48 -left-48 rounded-full bg-emerald-500/20 blur-3xl animate-blob animation-delay-2000" />
-
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Main Footer Content */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 pt-16 sm:pt-20 pb-12 border-b border-white/10">
-          {/* Brand Column */}
           <div className="lg:col-span-5 space-y-8">
             <Link href="/" className="inline-block group">
               <div className="flex items-center space-x-3">
                 <div className="relative">
-                  {/* Animated glow effect */}
                   <div className="absolute -inset-2 bg-gradient-to-r from-indigo-500 via-purple-500 to-emerald-500 rounded-full blur-xl opacity-20 group-hover:opacity-75 transition duration-500 group-hover:duration-200 animate-tilt" />
-
-                  {/* Logo symbol */}
                   <div className="relative flex items-center justify-center h-10 w-10 rounded-xl bg-black border border-white/10 overflow-hidden">
                     <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/20 to-emerald-500/20" />
                     <div className="relative flex items-center justify-center w-full h-full bg-black/50 backdrop-blur-sm">
@@ -90,8 +83,6 @@ export default function Footer() {
                     </div>
                   </div>
                 </div>
-                {/* 800835 */}
-                {/* Logo text */}
                 <div className="flex flex-col">
                   <span className="text-2xl font-semibold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-purple-400 to-emerald-400">
                     Xouston
@@ -102,13 +93,10 @@ export default function Footer() {
                 </div>
               </div>
             </Link>
-
             <p className="text-gray-400 max-w-sm">
               Создаем исключительный цифровой опыт через инновационные веб и
               мобильные решения.
             </p>
-
-            {/* Technologies */}
             <div className="pt-4 max-w-[400px] hidden sm:block">
               <h4 className="text-sm font-semibold text-white mb-4">
                 Технологии
@@ -133,8 +121,6 @@ export default function Footer() {
               </div>
             </div>
           </div>
-
-          {/* Links Columns */}
           <div className="lg:col-span-7">
             <div className="grid grid-cols-2 sm:grid-cols-2 gap-8 sm:gap-12">
               {footerLinks.map((column) => (
@@ -161,8 +147,6 @@ export default function Footer() {
             </div>
           </div>
         </div>
-
-        {/* Bottom Bar */}
         <div className="py-6 flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
           <p className="text-gray-400 text-sm text-center sm:text-left">
             © {currentYear} Xouston. All rights reserved.

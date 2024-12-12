@@ -33,7 +33,6 @@ const scrollToSection = (
 ) => {
   e.preventDefault();
 
-  // Try multiple times with increasing delays
   const tryScroll = (attempts = 0) => {
     const element = document.querySelector(href);
     if (element) {
@@ -42,7 +41,6 @@ const scrollToSection = (
         block: "start",
       });
     } else if (attempts < 3) {
-      // Try again after a delay, with increasing timeouts
       setTimeout(() => tryScroll(attempts + 1), 100 * (attempts + 1));
     }
   };
@@ -74,7 +72,7 @@ export default function Navbar() {
         className={`mx-auto transition-all duration-300 relative
         ${scrolled ? "max-w-5xl py-2" : "max-w-7xl py-4"}`}
       >
-        {/* Enhanced Glassmorphic Background with Gradient Border */}
+
         <div className="absolute inset-0 bg-black/40 backdrop-blur-lg rounded-full" />
         <div
           className={`absolute inset-x-0 -bottom-px h-[1px] bg-gradient-to-r 
@@ -84,7 +82,6 @@ export default function Navbar() {
 
         <div className="relative mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
-            {/* Modern Logo */}
             <motion.a
               href="#"
               className="flex items-center space-x-3 group"
@@ -92,10 +89,8 @@ export default function Navbar() {
               whileTap={{ scale: 0.98 }}
             >
               <div className="relative">
-                {/* Animated glow effect */}
                 <div className="absolute -inset-2 bg-gradient-to-r from-indigo-500 via-purple-500 to-emerald-500 rounded-full blur-xl opacity-20 group-hover:opacity-75 transition duration-500 group-hover:duration-200 animate-tilt" />
 
-                {/* Logo symbol */}
                 <div className="relative flex items-center justify-center h-10 w-10 rounded-xl bg-black border border-white/10 overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/20 to-emerald-500/20" />
                   <div className="relative flex items-center justify-center w-full h-full bg-black/50 backdrop-blur-sm">
@@ -106,7 +101,6 @@ export default function Navbar() {
                 </div>
               </div>
 
-              {/* Logo text */}
               <div className="flex flex-col">
                 <span className="text-2xl font-semibold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-purple-400 to-emerald-400">
                   Xouston
@@ -117,8 +111,8 @@ export default function Navbar() {
               </div>
             </motion.a>
 
-            {/* Enhanced Desktop Navigation */}
-            <div className="hidden md:flex md:items-center md:space-x-8">
+            {/* Desktop Navigation */}
+            <div className="hidden lg:flex lg:items-center lg:space-x-8">
               {navigation.map((item) => (
                 <div key={item.name} className="relative">
                   {item.children ? (
@@ -175,22 +169,15 @@ export default function Navbar() {
                 </div>
               ))}
 
-              {/* Modern Glowing CTA Button */}
               <motion.button
                 onClick={openRequestModal}
                 className="group relative ml-4"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
-                {/* Subtle glow effect */}
                 <div className="absolute -inset-0.5 bg-gradient-to-r from-indigo-500 to-emerald-500 rounded-xl opacity-0 group-hover:opacity-50 blur-xl transition-all duration-500" />
-
-                {/* Button container */}
                 <div className="relative flex items-center px-5 py-2.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm">
-                  {/* Gradient overlay */}
                   <div className="absolute inset-0 rounded-full bg-gradient-to-r from-indigo-500/80 to-emerald-500/80 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-                  {/* Button content */}
                   <div className="relative flex items-center space-x-2">
                     <span className="text-sm font-medium text-white">
                       Связаться
@@ -205,7 +192,7 @@ export default function Navbar() {
             <motion.button
               whileTap={{ scale: 0.95 }}
               onClick={() => setIsOpen(!isOpen)}
-              className="md:hidden rounded-lg bg-white/5 p-2 text-white hover:bg-white/10 transition-colors"
+              className="lg:hidden rounded-lg bg-white/5 p-2 text-white hover:bg-white/10 transition-colors"
             >
               {isOpen ? (
                 <X className="h-6 w-6" />
@@ -221,7 +208,7 @@ export default function Navbar() {
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="absolute inset-x-0 top-full mt-2 bg-black/50 backdrop-blur-xl md:hidden rounded-xl"
+            className="absolute inset-x-0 top-full mt-2 bg-black/50 backdrop-blur-xl lg:hidden rounded-xl"
           >
             <div className="space-y-1 px-4 py-4">
               {navigation.map((item) => (

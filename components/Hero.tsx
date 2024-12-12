@@ -41,7 +41,7 @@ export default function Hero() {
 
       <motion.div
         style={{ y, opacity }}
-        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 relative z-10"
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 md:py-32 relative z-10"
       >
         <motion.div
           variants={container}
@@ -49,10 +49,10 @@ export default function Hero() {
           animate="show"
           className="flex flex-col items-center text-center max-w-4xl mx-auto"
         >
-          <motion.div variants={item} className="relative mb-6">
+          <motion.div variants={item} className="relative mb-4 sm:mb-6">
             <div className="absolute -inset-x-4 -inset-y-2 bg-gradient-to-r from-indigo-500/20 via-purple-500/10 to-emerald-500/20 blur-3xl animate-text-gradient" />
 
-            <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold relative">
+            <h1 className="text-[2.5rem] leading-tight sm:text-6xl font-bold relative">
               <motion.div
                 className="inline-block"
                 variants={item}
@@ -70,7 +70,7 @@ export default function Hero() {
 
           <motion.p
             variants={item}
-            className="text-xl md:text-2xl text-indigo-200 mb-12 max-w-3xl"
+            className="text-base sm:text-xl md:text-2xl text-indigo-200 mb-8 sm:mb-12 max-w-[90%] "
           >
             Мы создаем уникальные мобильные и веб решения, которые способствуют
             росту прогрессивного бизнеса
@@ -78,17 +78,17 @@ export default function Hero() {
 
           <motion.div
             variants={item}
-            className="flex flex-col sm:flex-row gap-4 justify-center  mt-5"
+            className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center w-full sm:w-auto px-4 sm:px-0"
           >
             <motion.button
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               onClick={openRequestModal}
-              className="group relative"
+              className="group relative w-full sm:w-auto"
               variants={item}
             >
               <div className="absolute -inset-1 bg-gradient-to-r from-indigo-500 to-emerald-500 rounded-xl blur-lg opacity-50 group-hover:opacity-75 transition-all duration-500 group-hover:duration-200 animate-tilt" />
-              <div className="relative flex items-center justify-center px-8 py-4 rounded-xl bg-gradient-to-r from-indigo-500 to-emerald-500 text-white font-medium">
+              <div className="relative flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 rounded-xl bg-gradient-to-r from-indigo-500 to-emerald-500 text-white font-medium mb-1">
                 <motion.span
                   initial={{ x: -5, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
@@ -108,12 +108,19 @@ export default function Hero() {
 
             <motion.a
               href="#services"
+              onClick={(e) => {
+                e.preventDefault();
+                document.querySelector('#services')?.scrollIntoView({
+                  behavior: 'smooth',
+                  block: 'start',
+                });
+              }}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="group relative"
+              className="group relative w-full sm:w-auto"
               variants={item}
             >
-              <div className="relative flex items-center justify-center px-8 py-4 rounded-xl bg-white/5 backdrop-blur-lg border border-white/10 text-white font-medium hover:bg-white/10 transition-all duration-300">
+              <div className="relative flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 rounded-xl bg-white/5 backdrop-blur-lg border border-white/10 text-white font-medium hover:bg-white/10 transition-all duration-300">
                 <motion.span
                   initial={{ x: -5, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
