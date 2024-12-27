@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ModalProvider } from "@/contexts/ModalContext";
 import RequestModal from "@/components/RequestModal";
+import YandexMetrika from "@/components/YandexMetrika";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -95,6 +96,7 @@ export default function RootLayout({
             <Navbar />
             {children}
             <RequestModal />
+            <YandexMetrika />
           </ModalProvider>
         </ThemeProvider>
       </body>
