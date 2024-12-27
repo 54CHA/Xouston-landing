@@ -10,11 +10,14 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Xouston - Digital Lab | Разработка сайтов и приложений",
-  description: "Создаем современные веб-сайты, мобильные приложения и Telegram Mini Apps. Профессиональная разработка цифровых решений для бизнеса.",
-  keywords: "разработка сайтов, веб-приложения, мобильные приложения, telegram mini apps, digital agency, веб-студия",
+  description:
+    "Создаем современные веб-сайты, мобильные приложения и Telegram Mini Apps. Профессиональная разработка цифровых решений для бизнеса.",
+  keywords:
+    "разработка сайтов, веб-приложения, мобильные приложения, telegram mini apps, digital agency, веб-студия",
   openGraph: {
     title: "Xouston - Digital Lab | Разработка сайтов и приложений",
-    description: "Создаем современные веб-сайты, мобильные приложения и Telegram Mini Apps. Профессиональная разработка цифровых решений для бизнеса.",
+    description:
+      "Создаем современные веб-сайты, мобильные приложения и Telegram Mini Apps. Профессиональная разработка цифровых решений для бизнеса.",
     url: "https://xouston.com",
     siteName: "Xouston Digital Lab",
     images: [
@@ -72,7 +75,13 @@ export default function RootLayout({
       <head>
         <meta name="theme-color" content="#000000" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta
+          name="apple-mobile-web-app-status-bar-style"
+          content="black-translucent"
+        />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
       </head>
       <body className={inter.className}>
         <ThemeProvider
