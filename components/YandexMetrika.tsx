@@ -1,6 +1,5 @@
 "use client";
 
-import Script from "next/script";
 import { useEffect } from "react";
 
 declare global {
@@ -41,7 +40,9 @@ export default function YandexMetrika() {
         document,
         "script",
         "https://mc.yandex.ru/metrika/tag.js",
-        "ym"
+        "ym",
+        document.createElement("script"),
+        document.getElementsByTagName("script")[0]
       );
 
       window.ym(99330553, "init", {
