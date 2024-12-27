@@ -9,23 +9,35 @@ declare global {
   }
 }
 
+type MetrikaWindow = Window & {
+  [key: string]: any;
+};
+
 export default function YandexMetrika() {
   useEffect(() => {
     if (typeof window !== "undefined") {
-      (function (m, e, t, r, i, k, a) {
+      (function (
+        m: MetrikaWindow,
+        e: Document,
+        t: string,
+        r: string,
+        i: string,
+        k: HTMLScriptElement,
+        a: HTMLElement
+      ) {
         m[i] =
           m[i] ||
           function () {
             (m[i].a = m[i].a || []).push(arguments);
           };
-        m[i].l = 1 * new Date();
+        m[i].l = 1 * new Date().getTime();
         k = e.createElement(t);
         a = e.getElementsByTagName(t)[0];
         k.async = 1;
         k.src = r;
-        a.parentNode.insertBefore(k, a);
+        a.parentNode?.insertBefore(k, a);
       })(
-        window,
+        window as MetrikaWindow,
         document,
         "script",
         "https://mc.yandex.ru/metrika/tag.js",
