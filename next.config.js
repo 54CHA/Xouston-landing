@@ -1,11 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
+  output: "export",
   eslint: {
     ignoreDuringBuilds: true,
   },
   images: { unoptimized: true },
-  transpilePackages: ['three'],
+  transpilePackages: ["three"],
 };
 
 module.exports = nextConfig;

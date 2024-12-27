@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     siteName: "Xouston Digital Lab",
     images: [
       {
-        url: "/xouston-logo.png",
+        url: "/xouston_logo.png",
         width: 1200,
         height: 630,
         alt: "Xouston Digital Lab - Разработка цифровых решений",
@@ -80,9 +80,9 @@ export default function RootLayout({
           name="apple-mobile-web-app-status-bar-style"
           content="black-translucent"
         />
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="icon" href="/xouston_logo.png" sizes="any" />
+        <link rel="icon" href="/xouston_logo.png" type="image/svg+xml" />
+        <link rel="apple-touch-icon" href="/xouston_logo.png" />
       </head>
       <body className={inter.className}>
         <ThemeProvider
