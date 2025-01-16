@@ -54,7 +54,8 @@ const services = [
   },
   {
     title: "Telegram/ВК Mini Apps",
-    description: "Создаем мини-приложения для Telegram с богатым функционалом и интеграцией с ботами",
+    description:
+      "Создаем мини-приложения для Telegram с богатым функционалом и интеграцией с ботами",
     delay: 0.4,
     icon: IconBrandTelegram,
     startingPrice: "от 30 000 ₽",
@@ -141,6 +142,15 @@ export default function Services() {
     }));
   };
 
+  // Create individual refs for each service card
+  const cardRef1 = useRef<HTMLDivElement>(null);
+  const cardRef2 = useRef<HTMLDivElement>(null);
+  const cardRef3 = useRef<HTMLDivElement>(null);
+  const cardRef4 = useRef<HTMLDivElement>(null);
+  const cardRef5 = useRef<HTMLDivElement>(null);
+
+  const cardRefs = [cardRef1, cardRef2, cardRef3, cardRef4, cardRef5];
+
   return (
     <section id="services" className="relative py-32 overflow-hidden">
       <div className="" />
@@ -184,7 +194,6 @@ export default function Services() {
         {/* Services Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {services.map((service, index) => {
-            const cardRef = useRef<HTMLDivElement>(null);
             return (
               <motion.div
                 key={service.title}
@@ -199,7 +208,7 @@ export default function Services() {
                 }`}
               >
                 <div
-                  ref={cardRef}
+                  ref={cardRefs[index]}
                   className="relative w-full h-full"
                   style={{
                     perspective: "1000px",
@@ -210,7 +219,7 @@ export default function Services() {
                   }}
                   onClick={() => toggleFlip(service.title)}
                   onMouseMove={(e) =>
-                    handleMouseMove(e, cardRef, service.title)
+                    handleMouseMove(e, cardRefs[index], service.title)
                   }
                   onMouseLeave={() => handleMouseLeave(service.title)}
                 >
@@ -228,8 +237,8 @@ export default function Services() {
                     }}
                   >
                     {/* Icon - Updated styles */}
-                    <div className="absolute -top-4 -right-4 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3">
-                      <service.icon className="w-24 h-24 text-white/[0.03] group-hover:text-indigo-300/[0.3] transition-colors duration-300" />
+                    <div className="absolute -top-4 -right-4 transition-all duration-300 group-hover:scale-[1.2] group-hover:rotate-3">
+                      <service.icon className="w-[110px] h-[110px] rotate-[10deg] text-white/[0.05] group-hover:text-indigo-300/[0.3] transition-colors duration-300 " />
                     </div>
 
                     {/* Number indicator */}
@@ -249,16 +258,16 @@ export default function Services() {
                       </p>
 
                       {/* Arrow indicator */}
-                      {/* <div className="mt-6 flex items-center text-white/60 group-hover:text-white transition-colors">
-                        <span className="text-sm">Learn more</span>
-                        <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                      </div> */}
+                    </div>
+                    <div className="absolute bottom-5 right-10 flex items-center text-white/60 group-hover:text-white transition-colors">
+                      <span className="text-sm">Подробнее</span>
+                      <ArrowRight className="ml-1 h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
                     </div>
                   </div>
 
                   {/* Back of card */}
                   <div
-                    className="absolute w-full h-full bg-white/5 backdrop-blur-lg border border-white/10 hover:bg-white/10 transition-all duration-300 p-8 rounded-2xl overflow-hidden"
+                    className="absolute w-full h-full bg-white/5 backdrop-blur-lg border border-white/10 hover:bg-white/10 transition-all duration-300 p-8 rounded-2xl overflow-hidden flex items-center justify-center"
                     style={{
                       backfaceVisibility: "hidden",
                       transform: flippedCards[service.title]
@@ -268,7 +277,7 @@ export default function Services() {
                       transformStyle: "preserve-3d",
                     }}
                   >
-                    <div className="flex flex-col justify-center items-center h-full text-center">
+                    <div className="flex flex-col items-center">
                       <h4 className="text-xl font-medium mb-4 text-white group-hover:text-indigo-300 transition-colors">
                         &quot;{service.title}&quot;
                       </h4>
@@ -277,20 +286,21 @@ export default function Services() {
                       </div>
 
                       {/* Stack icons */}
-                      <div className="flex gap-4 mb-6">
-                        {service.stack?.map((tech) => (
-                          <div key={tech.name} className="group/icon relative">
-                            <tech.icon className="w-6 h-6 text-white/50 hover:text-white/90 transition-colors" />
-                            <span className="absolute -bottom-6 left-1/2 -translate-x-1/2 text-xs text-white/70 opacity-0 group-hover/icon:opacity-100 transition-opacity whitespace-nowrap">
-                              {tech.name}
-                            </span>
-                          </div>
-                        ))}
-                      </div>
-
-                      <p className="text-neutral-400 text-sm group-hover:text-neutral-300 transition-colors">
-                        Нажмите, чтобы вернуться
-                      </p>
+                      {service.stack && (
+                        <div className="flex gap-4">
+                          {service.stack.map((tech) => (
+                            <div
+                              key={tech.name}
+                              className="group/icon relative"
+                            >
+                              <tech.icon className="w-6 h-6 text-white/50 hover:text-white/90 transition-colors" />
+                              <span className="absolute -bottom-6 left-1/2 -translate-x-1/2 text-xs text-white/70 opacity-0 group-hover/icon:opacity-100 transition-opacity whitespace-nowrap">
+                                {tech.name}
+                              </span>
+                            </div>
+                          ))}
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>

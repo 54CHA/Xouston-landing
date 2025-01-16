@@ -232,7 +232,7 @@ export default function Process() {
             <span className="relative inline-block">
               <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-emerald-500 blur-lg opacity-25" />
               <span className="relative px-6 py-2 text-sm text-white/90 bg-white/5 rounded-full border border-white/10 backdrop-blur-sm">
-                Как мы раотаем
+                Как мы работаем
               </span>
             </span>
           </motion.div>
