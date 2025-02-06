@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SESSION_NAME="xouston"
+SESSION_NAME="xo"
 REPO_DIR="$HOME/github/front"
 GIT_REPO_URL="https://github.com/54CHA/Xouston-landing.git"
 
